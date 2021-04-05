@@ -1,5 +1,7 @@
+{
   "project_info": {
     "project_number": "318278891091",
+    "firebase_url": "https://livemart-f8ac2-default-rtdb.firebaseio.com",
     "project_id": "livemart-f8ac2",
     "storage_bucket": "livemart-f8ac2.appspot.com"
   },
@@ -12,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "318278891091-o7ptdh2gefqc6rhbor8haa9cduq4t132.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_app",
+            "certificate_hash": "c0c3ea481c56ce9ee667ab4a9650de5dfb8a4ec4"
+          }
+        },
         {
           "client_id": "318278891091-qgmvar1obref1475us4uad7mr97g7sis.apps.googleusercontent.com",
           "client_type": 3

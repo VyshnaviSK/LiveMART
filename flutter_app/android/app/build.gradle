@@ -40,6 +40,7 @@ android {
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -72,6 +73,7 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
     //testCompile 'org.testng:testng:6.9.10'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
 }
 
