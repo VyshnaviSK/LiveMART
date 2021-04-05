@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'Pages/login.dart';
+import 'Pages/dashboard-retailer.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: Login(),
+    home: RetailerHome(),
   ));
 }
 /*
