@@ -24,7 +24,8 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'  // Google Services plugin
 android {
     compileSdkVersion 30
 
@@ -56,4 +57,22 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+        // ...
+    implementation platform('com.google.firebase:firebase-bom:26.8.0')
+    implementation 'com.google.firebase:firebase-analytics'
+        //implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
+
+        // Required only if Facebook login support is required
+        // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
+        //implementation 'com.facebook.android:facebook-android-sdk:4.x'
+
+        // Required only if Twitter login support is required
+        // Find the latest Twitter SDK releases here: https://goo.gl/E5wZvQ
+        //implementation 'com.twitter.sdk.android:twitter-core:3.x'
+
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    //testCompile 'org.testng:testng:6.9.10'
+
 }
+
+
