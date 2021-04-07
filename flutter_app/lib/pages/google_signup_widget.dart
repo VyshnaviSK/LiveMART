@@ -56,8 +56,8 @@ class GoogleSignupButtonWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       highlightedBorderColor: Colors.black,
       borderSide: BorderSide(color: Colors.black),
-      textColor: Colors.black,
-      icon: FaIcon(FontAwesomeIcons.google, color: Colors.red),*/
+      textColor: Colors.black,*/
+      icon: FaIcon(FontAwesomeIcons.google, color: Colors.red),
       onPressed: () {
         final provider =
         Provider.of<GoogleSignInProvider>(context, listen: false);
