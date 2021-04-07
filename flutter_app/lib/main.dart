@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'pages/home.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_auth/Screens/Front%20Page/front_page.dart';
+import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
+import 'package:flutter_auth/constants.dart';
 
-Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  static final String title = 'Google SignIn';
-
+  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) => MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: title,
-    theme: ThemeData(primarySwatch: Colors.deepOrange),
-    home: HomePage(),
-  );
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Auth',
+      theme: ThemeData(
+        primaryColor: kPrimaryColor,
+        scaffoldBackgroundColor: Colors.white,
+      ),
+      home: FrontScreen(),
+    );
+  }
 }
