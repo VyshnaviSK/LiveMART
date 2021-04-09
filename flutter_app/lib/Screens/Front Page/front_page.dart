@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/Front Page/components/body.dart';
+import 'package:flutter_app/Screens/Front Page/components/body.dart';
 
 class FrontScreen extends StatelessWidget {
   @override

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/Login/login_screen.dart';
-import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
-import 'package:flutter_auth/Screens/Welcome/components/background.dart';
-import 'package:flutter_auth/Screens/Welcome/components/divider_or.dart';
-import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
-import 'package:flutter_auth/Screens/Welcome_Retailer/welcomeretailer_screen.dart';
-import 'package:flutter_auth/Screens/Welcome_Wholesaler/welcomewholesaler_screen.dart';
-import 'package:flutter_auth/components/rounded_button.dart';
-import 'package:flutter_auth/constants.dart';
+import 'package:flutter_app/Screens/Login/login_screen.dart';
+import 'package:flutter_app/Screens/Signup/signup_screen.dart';
+import 'package:flutter_app/Screens/Welcome/components/background.dart';
+import 'package:flutter_app/Screens/Welcome/components/divider_or.dart';
+import 'package:flutter_app/Screens/Welcome/welcome_screen.dart';
+import 'package:flutter_app/Screens/Welcome_Retailer/welcomeretailer_screen.dart';
+import 'package:flutter_app/Screens/Welcome_Wholesaler/welcomewholesaler_screen.dart';
+import 'package:flutter_app/components/rounded_button.dart';
+import 'package:flutter_app/constants.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_auth/Screens/Welcome/components/social_icon.dart';
+import 'package:flutter_app/Screens/Welcome/components/social_icon.dart';
 
 class Body extends StatelessWidget {
   @override

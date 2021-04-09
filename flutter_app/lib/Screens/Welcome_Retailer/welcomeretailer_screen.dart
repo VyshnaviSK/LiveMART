@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/Welcome/components/body.dart';
-import 'package:flutter_auth/Screens/Welcome_Retailer/components/body.dart';
+import 'package:flutter_app/Screens/Welcome/components/body.dart';
+import 'package:flutter_app/Screens/Welcome_Retailer/components/body.dart';
 
 class WelcomeRetailerScreen extends StatelessWidget {
   @override
