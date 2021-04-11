@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Login/login_screen.dart';
 import 'package:flutter_app/components/rounded_button.dart';
@@ -158,6 +159,17 @@ class _OtpFormState extends State<OtpForm> {
                 );
               }
             },
+          ),
+          SizedBox(height: SizeConfig.screenHeight * 0.1),
+          GestureDetector(
+            onTap: () {
+              genarated_otp = generateOtp();
+              otp.sendOtp(phoneNumber,'the otp is: ' + genarated_otp.toString(),1000,9999,'+91'); // OTP code resend
+            },
+            child: Text(
+              "Resend OTP Code",
+              style: TextStyle(decoration: TextDecoration.underline),
+            ),
           )
         ],
       ),

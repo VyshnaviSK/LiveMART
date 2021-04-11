@@ -19,19 +19,7 @@ class Body extends StatelessWidget {
                 "OTP Verification",
                 style: headingStyle,
               ),
-              Text("We sent your code to +1 898 860 ***"),
-              buildTimer(),
-              OtpForm(),
-              SizedBox(height: SizeConfig.screenHeight * 0.1),
-              GestureDetector(
-                onTap: () {
-                  // OTP code resend
-                },
-                child: Text(
-                  "Resend OTP Code",
-                  style: TextStyle(decoration: TextDecoration.underline),
-                ),
-              )
+              OtpForm()
             ],
           ),
         ),
@@ -39,7 +27,7 @@ class Body extends StatelessWidget {
     );
   }
 
-  Row buildTimer() {
+/*Row buildTimer() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -54,5 +42,5 @@ class Body extends StatelessWidget {
         ),
       ],
     );
-  }
+  }*/
 }
