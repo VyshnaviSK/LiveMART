@@ -1,10 +1,18 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Screens/Login/login_screen.dart';
 import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/size_config.dart';
-
+import 'package:flutter_otp/flutter_otp.dart';
 
 
 import '../../../constants.dart';
+
+FlutterOtp otp = FlutterOtp();
+String result;
+int enteredOtp;
+
+
 
 class OtpForm extends StatefulWidget {
   const OtpForm({
@@ -16,9 +24,19 @@ class OtpForm extends StatefulWidget {
 }
 
 class _OtpFormState extends State<OtpForm> {
+
+  String phoneNumber = '9929710370',otp_str;
+  var d1,d2,d3,d4, genarated_otp;
   FocusNode pin2FocusNode;
   FocusNode pin3FocusNode;
   FocusNode pin4FocusNode;
+
+  int generateOtp([int min = 1000, int max = 9999]) {
+    //Generates four digit OTP by default
+    int _minOtpValue = min;
+    int _maxOtpValue = max;
+    return _minOtpValue + Random().nextInt(_maxOtpValue - _minOtpValue);
+  }
 
   @override
   void initState() {
@@ -44,9 +62,17 @@ class _OtpFormState extends State<OtpForm> {
 
   @override
   Widget build(BuildContext context) {
+    bool yesorno;
     return Form(
       child: Column(
         children: [
+          RoundedButton(
+              text: "Send OTP",
+              press: () {
+                genarated_otp = generateOtp();
+                otp.sendOtp(phoneNumber,'the otp is: ' + genarated_otp.toString(),1000,9999,'+91');
+              }
+          ),
           SizedBox(height: SizeConfig.screenHeight * 0.15),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,6 +87,7 @@ class _OtpFormState extends State<OtpForm> {
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
                   onChanged: (value) {
+                    d1 =value;
                     nextField(value, pin2FocusNode);
                   },
                 ),
@@ -74,7 +101,10 @@ class _OtpFormState extends State<OtpForm> {
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
-                  onChanged: (value) => nextField(value, pin3FocusNode),
+                  onChanged: (value) {
+                    d2 =value;
+                    nextField(value, pin3FocusNode);
+                  },
                 ),
               ),
               SizedBox(
@@ -86,7 +116,10 @@ class _OtpFormState extends State<OtpForm> {
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
-                  onChanged: (value) => nextField(value, pin4FocusNode),
+                  onChanged: (value){
+                    d3 =value;
+                    nextField(value, pin4FocusNode);
+                  },
                 ),
               ),
               SizedBox(
@@ -99,10 +132,11 @@ class _OtpFormState extends State<OtpForm> {
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
                   onChanged: (value) {
+                    d4 =value;
                     if (value.length == 1) {
                       pin4FocusNode.unfocus();
-                      // Then you need to check is the code is correct or not
                     }
+                    otp_str = d1.toString() + d2.toString() +d3.toString() +d4.toString();
                   },
                 ),
               ),
@@ -111,7 +145,19 @@ class _OtpFormState extends State<OtpForm> {
           SizedBox(height: SizeConfig.screenHeight * 0.15),
           RoundedButton(
             text: "Continue",
-            press: () {},
+            press: () {
+              yesorno = genarated_otp == int.parse(otp_str);
+              if(yesorno){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return LoginScreen();
+                    }, // Navigated to login for testing, actual navigation to dashboard
+                  ),
+                );
+              }
+            },
           )
         ],
       ),
