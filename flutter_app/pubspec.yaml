@@ -38,7 +38,6 @@ dev_dependencies:
   google_sign_in: ^5.0.1
   flutter_facebook_auth: ^3.3.2
   shared_preferences: ^2.0.5
-  fluttertoast: ^8.0.3
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -61,6 +60,8 @@ flutter:
     - Images/seafood.png
     - Images/dryf.png
     - Images/dryfruits.png
+    - Images/fruits/
+    - Images/fruits/apple.jpeg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
