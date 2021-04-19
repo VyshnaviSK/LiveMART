@@ -56,7 +56,24 @@ class body_retailer extends StatelessWidget {
             ),
             RoundedButton(
               text: "SIGNUP",
-              press: () {},
+              press: () {
+
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Registration Successful!"),
+
+                    )
+                );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return LoginScreen();
+                    },
+                  ),
+                );
+              },
             ),
             SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(

@@ -9,5 +9,3 @@ class FrontScreen extends StatelessWidget {
     );
   }
 }
-
-
