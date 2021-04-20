@@ -67,15 +67,16 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
           }
         },
 
-
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-                Image.asset("assets/images/google_logo.png", height: 20.0,
-                ),
+              social_icon(
+                iconSrc: "assets/icons/google-plus.svg",
+                press: () {},
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: Text(

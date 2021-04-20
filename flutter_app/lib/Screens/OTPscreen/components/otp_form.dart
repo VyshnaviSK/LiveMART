@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Screens/Login/login_screen.dart';
+import 'package:flutter_app/Screens/Product_details/product_screen.dart';
 import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/size_config.dart';
 import 'package:flutter_otp/flutter_otp.dart';
@@ -153,7 +153,7 @@ class _OtpFormState extends State<OtpForm> {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return LoginScreen();
+                      return ProductScreen();
                     }, // Navigated to login for testing, actual navigation to dashboard
                   ),
                 );

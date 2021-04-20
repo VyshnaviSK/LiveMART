@@ -14,7 +14,7 @@ class divider_or extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              "OR Go for Social Sign-In",
+              "OR",
               style: TextStyle(
                 color: kPrimaryColor,
                 fontWeight: FontWeight.w600,

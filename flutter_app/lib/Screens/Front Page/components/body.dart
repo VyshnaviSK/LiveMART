@@ -16,7 +16,6 @@ import 'package:flutter_app/Screens/Front Page/user_info_screen.dart';
 import 'package:flutter_app/widgets/google_sign_in_button.dart';
 
 class Body extends StatelessWidget {
-  bool _isSigningIn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +29,21 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            /*Text(
               "Hello User!",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            ),*/
+            Text(
+              "Welcome to ",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
             ),
             Text(
-              "Welcome to LIVEMART",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              "LiveMART!",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
             ),
-            SizedBox(height: size.height * 0.05),
+            SizedBox(height: size.height * 0.1),
             Text(
-              "You are a....",
+              "You are a...",
               style: TextStyle(fontWeight: FontWeight.bold,
                   fontSize: 25,
                   fontStyle: FontStyle.italic),
@@ -89,9 +92,9 @@ class Body extends StatelessWidget {
                 );
               },
             ),
-            divider_or(),
+            /*divider_or(),
 
-            /*Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 social_icon(
@@ -101,7 +104,7 @@ class Body extends StatelessWidget {
                 social_icon(
                   iconSrc: "assets/icons/twitter.svg",
                   press: () {},
-                ),*/
+                ),
             FutureBuilder(
               future: Authentication.initializeFirebase(context: context),
               builder: (context, snapshot) {
@@ -116,7 +119,7 @@ class Body extends StatelessWidget {
                   ),
                 );
               },
-            ),
+            ),*/
           ],
         ),
       )
