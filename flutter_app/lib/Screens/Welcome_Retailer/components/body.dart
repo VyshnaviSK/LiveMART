@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Login/login_screen.dart';
 import 'package:flutter_app/Screens/Signup/signup_retailerscreen.dart';
-import 'package:flutter_app/Screens/Signup/signup_screen.dart';
 import 'package:flutter_app/Screens/Welcome/components/background.dart';
 import 'package:flutter_app/Screens/Welcome/components/divider_or.dart';
 import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/constants.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:flutter_app/Screens/Welcome/components/social_icon.dart';
+import 'package:flutter_app/widgets/google_sign_in_button.dart';
 
-class Body_Retailer extends StatelessWidget {
+
+class Body_retailer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -20,14 +19,10 @@ class Body_Retailer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Hello Retailer!",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              "Hello Retailer!" ,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
             ),
-            Text(
-              "Welcome to LIVEMART",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-            ),
-            SizedBox(height: size.height * 0.05),
+            SizedBox(height: size.height * 0.1),
             Image.asset(
               "assets/images/delivery.png",
               height: size.height * 0.3,
@@ -63,23 +58,7 @@ class Body_Retailer extends StatelessWidget {
             ),
 
             divider_or(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                social_icon(
-                  iconSrc: "assets/icons/facebook.svg",
-                  press: () {},
-                ),
-                social_icon(
-                  iconSrc: "assets/icons/twitter.svg",
-                  press: () {},
-                ),
-                social_icon(
-                  iconSrc: "assets/icons/google-plus.svg",
-                  press: () {},
-                ),
-              ],
-            ),
+            GoogleSignInButton(),
           ],
         ),
       ),

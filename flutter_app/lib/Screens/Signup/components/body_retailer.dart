@@ -1,81 +1,226 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Login/login_screen.dart';
 import 'package:flutter_app/Screens/Signup/components/background.dart';
 import 'package:flutter_app/Screens/Signup/components/or_divider.dart';
 import 'package:flutter_app/Screens/Signup/components/social_icon.dart';
+import 'package:flutter_app/Screens/home.dart';
 import 'package:flutter_app/components/already_have_an_account_acheck.dart';
 import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/components/rounded_input_field.dart';
 import 'package:flutter_app/components/rounded_password_field.dart';
-import 'package:flutter_svg/svg.dart';
 
-class body_retailer extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+
+  final _formKey = GlobalKey<FormState>();
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  CollectionReference retailers = FirebaseFirestore.instance.collection('Retailers');
+
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController shopnameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+
+  @override
+  void registerToFb() {
+
+    firebaseAuth
+        .createUserWithEmailAndPassword(
+        email: emailController.text, password: passwordController.text);
+
+    retailers.add({
+      "name": nameController.text,
+      "shopname": shopnameController.text,
+      "email": emailController.text,
+      "phone": phoneController.text,
+      "address": addressController.text,
+    }).then((res) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen(/*uid: result.user.uid*/)),
+      );
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Registration Successful!"),
+      ));
+    }).catchError((err) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Error"),
+              content: Text(err.message),
+              actions: [
+                TextButton(
+                  child: Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    nameController.dispose();
+    shopnameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    phoneController.dispose();
+    addressController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Background(
+      key: _formKey,
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "SIGNUP FOR RETAILERS",
+              "SIGNUP FOR RETAILERS!",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
             SizedBox(height: size.height * 0.03),
-            /*Image.asset(
-              "assets/images/woman.png",
-              height: size.height * 0.35,
-            ),*/
-            RoundedInputField(
-              hintText: "Enter Your Email",
-              onChanged: (value) {},
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: nameController,
+                decoration: InputDecoration(
+                  labelText: "Enter User Name",
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                // The validator receives the text that the user has entered.
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter User Name';
+                  }
+                  return null;
+                },
+              ),
             ),
-            RoundedPasswordField(
-              onChanged: (value) {},
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  labelText: "Enter Email",
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                // The validator receives the text that the user has entered.
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter Email';
+                  }
+                  return null;
+                },
+              ),
             ),
-            RoundedInputField(
-              hintText: "Enter Your Name",
-              onChanged: (value) {},
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: "Enter password",
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                // The validator receives the text that the user has entered.
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter password';
+                  }
+                  return null;
+                },
+              ),
             ),
-            RoundedInputField(
-              hintText: "Enter your Phone Number",
-              onChanged: (value) {},
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: phoneController,
+                decoration: InputDecoration(
+                  labelText: "Enter Phone No.",
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                // The validator receives the text that the user has entered.
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter Phone No.';
+                  }
+                  return null;
+                },
+              ),
             ),
-            RoundedInputField(
-              hintText: "Enter Your Shop Name",
-              onChanged: (value) {},
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: shopnameController,
+                decoration: InputDecoration(
+                  labelText: "Enter Shop Name",
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                // The validator receives the text that the user has entered.
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter Shop Name';
+                  }
+                  return null;
+                },
+              ),
             ),
-            RoundedInputField(
-              hintText: "Enter Your Shop Address",
-              onChanged: (value) {},
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: addressController,
+                decoration: InputDecoration(
+                  labelText: "Enter Shop Address",
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                // The validator receives the text that the user has entered.
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter Shop Address';
+                  }
+                  return null;
+                },
+              ),
             ),
-            RoundedInputField(
-              hintText: "Enter Catogery of Products Sold",
-              onChanged: (value) {},
-            ),
+            SizedBox(height: size.height * 0.03),
             RoundedButton(
               text: "SIGNUP",
               press: () {
-
-                ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text("Registration Successful!"),
-
-                    )
-                );
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return LoginScreen();
-                    },
-                  ),
-                );
+                registerToFb();
               },
             ),
-            SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(
               login: false,
               press: () {
@@ -114,3 +259,4 @@ class body_retailer extends StatelessWidget {
     );
   }
 }
+

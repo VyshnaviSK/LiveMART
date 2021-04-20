@@ -5,7 +5,7 @@ class SignUpRetailerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: body_retailer(),
+      body: Body(),
     );
   }
 }

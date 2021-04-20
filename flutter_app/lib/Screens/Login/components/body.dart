@@ -1,20 +1,62 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Login/components/background.dart';
 import 'package:flutter_app/Screens/Signup/signup_screen.dart';
 import 'package:flutter_app/Screens/OTPscreen/OTPscreen.dart';
+import 'package:flutter_app/Screens/home.dart';
 import 'package:flutter_app/components/already_have_an_account_acheck.dart';
 import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/components/rounded_input_field.dart';
 import 'package:flutter_app/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Body extends StatelessWidget {
-  const Body({
-    Key key,
-  }) : super(key: key);
+class Body extends StatefulWidget {
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void logintoFb() {
+
+    firebaseAuth
+        .signInWithEmailAndPassword(
+        email: emailController.text, password: passwordController.text).then((res) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => OtpScreen(/*uid: result.user.uid */)),
+      );
+    }).catchError((err) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Error"),
+              content: Text(err.message),
+              actions: [
+                TextButton(
+                  child: Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     return Background(
       child: SingleChildScrollView(
@@ -32,23 +74,17 @@ class Body extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
+              controller: emailController,
               hintText: "Your Email",
               onChanged: (value) {},
             ),
             RoundedPasswordField(
-              onChanged: (value) {},
+              controller: passwordController,
             ),
             RoundedButton(
               text: "LOGIN",
               press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return OtpScreen();
-                    },
-                  ),
-                );
+                logintoFb();
               },
             ),
             SizedBox(height: size.height * 0.03),

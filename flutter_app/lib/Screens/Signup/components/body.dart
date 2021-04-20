@@ -48,6 +48,10 @@ class _BodyState extends State<Body> {
           context,
           MaterialPageRoute(builder: (context) => LoginScreen(/*uid: result.user.uid*/)),
         );
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Registration Successful!"),
+        ));
       }).catchError((err) {
       showDialog(
           context: context,
@@ -168,6 +172,7 @@ class _BodyState extends State<Body> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 controller: passwordController,
+                obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Enter password",
                   enabledBorder: OutlineInputBorder(
@@ -225,13 +230,7 @@ class _BodyState extends State<Body> {
             RoundedButton(
               text: "SIGNUP",
               press: () {
-
                   registerToFb();
-
-                ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text("Registration Successful!"),
-                ));
               },
             ),
             AlreadyHaveAnAccountCheck(
