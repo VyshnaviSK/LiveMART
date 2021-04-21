@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Front Page/front_page.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_app/Screens/Front Page/user_info_screen.dart';
-
+import 'package:flutter_app/main.dart';
+import 'package:flutter_app/utils/adding_users_google_signin.dart';
 
 class Authentication {
   static SnackBar customSnackBar({@required String content}) {
@@ -21,6 +22,7 @@ class Authentication {
     @required BuildContext context,
   }) async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
+
     User user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
@@ -34,8 +36,6 @@ class Authentication {
     }
     return firebaseApp;
   }
-
-
 
 
   static Future<User> signInWithGoogle({@required BuildContext context}) async {
@@ -55,6 +55,7 @@ class Authentication {
           accessToken: googleSignInAuthentication.accessToken,
           idToken: googleSignInAuthentication.idToken,
         );
+
 
         try {
           final UserCredential userCredential =
@@ -86,11 +87,10 @@ class Authentication {
         }
       }
 
-
+    Database.infoset();
     return user;
+
   }
-
-
 
 
   static Future<void> signOut({@required BuildContext context}) async {
@@ -110,7 +110,8 @@ class Authentication {
       );
     }
   }
-
-
 }
+
+
+
 
