@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Components/app-widgets.dart';
-import 'package:flutter_app/Components/categories-retailer.dart';
-
-class RetailerBuy extends StatefulWidget {
+import 'package:flutter_app/Components/categories-customer.dart';
+class CustomerBody extends StatefulWidget {
   @override
-  _RetailerBuyState createState() => _RetailerBuyState();
+  _CustomerBodyState createState() => _CustomerBodyState();
 }
 
-class _RetailerBuyState extends State<RetailerBuy> {
+class _CustomerBodyState extends State<CustomerBody> {
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -23,7 +22,7 @@ class _RetailerBuyState extends State<RetailerBuy> {
         new Container(
             decoration: BoxDecoration(
                 gradient:
-                    LinearGradient(colors: [Colors.green[100], Colors.white])),
+                LinearGradient(colors: [Colors.green[100], Colors.white])),
             child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: new Text('Categories',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Components/app-widgets.dart';
+import 'package:flutter_app/Components/categories-retailer.dart';
+
 
 class RetailerSell extends StatefulWidget {
   @override
@@ -11,7 +12,6 @@ class _RetailerSellState extends State<RetailerSell> {
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        OrderStatus(),
         new Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -23,7 +23,7 @@ class _RetailerSellState extends State<RetailerSell> {
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
                         fontSize: 25.0)))),
-        Categories()
+        CategoriesSell()
       ],
     );
   }
