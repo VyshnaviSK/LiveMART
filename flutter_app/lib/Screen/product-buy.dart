@@ -10,7 +10,7 @@ class _DisplayCategoryState extends State<DisplayCategory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: Colors.orangeAccent,
         title: Text('LiveMART'),
         actions: <Widget>[
           new IconButton(
@@ -107,7 +107,7 @@ class SingleItem extends StatelessWidget {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.green.withOpacity(0.2),
+                        color: Colors.orangeAccent.withOpacity(0.2),
                         offset: Offset(3, 2),
                         blurRadius: 30)
                   ]),
@@ -145,7 +145,7 @@ class SingleItem extends StatelessWidget {
                                       fontWeight: FontWeight.bold)),
                               TextSpan(
                                   text:
-                                  "\$${itemCost} \n\n",
+                                  "\INR $itemCost /kg\n\n",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 18,

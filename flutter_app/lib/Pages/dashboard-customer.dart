@@ -14,7 +14,7 @@ class _CustomerHomeState extends State<CustomerHome> {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             appBar: new AppBar(
-              backgroundColor: Colors.lightGreen,
+              backgroundColor: Colors.orangeAccent,
               title: Text('LiveMART'),
               actions: <Widget>[
                 new IconButton(

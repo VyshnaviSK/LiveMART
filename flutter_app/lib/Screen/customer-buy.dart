@@ -22,7 +22,7 @@ class _CustomerBodyState extends State<CustomerBody> {
         new Container(
             decoration: BoxDecoration(
                 gradient:
-                LinearGradient(colors: [Colors.green[100], Colors.white])),
+                LinearGradient(colors: [Colors.orangeAccent[100], Colors.white])),
             child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: new Text('Categories',

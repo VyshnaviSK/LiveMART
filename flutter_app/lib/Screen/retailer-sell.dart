@@ -15,14 +15,19 @@ class _RetailerSellState extends State<RetailerSell> {
         new Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
-                    colors: [Colors.blue[100], Colors.white])),
+                    colors: [Colors.blue[100], Colors.white]
+                )
+            ),
             child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: new Text('Categories',
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
-                        fontSize: 25.0)))),
+                        fontSize: 25.0)
+                )
+            )
+        ),
         CategoriesSell()
       ],
     );

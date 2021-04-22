@@ -118,7 +118,7 @@ class _CustomerDrawerState extends State<CustomerDrawer> {
               ),
             ),
             decoration: new BoxDecoration(
-              color: Colors.green,
+              color: Colors.orangeAccent,
             ),
           ),
           //body
@@ -126,7 +126,7 @@ class _CustomerDrawerState extends State<CustomerDrawer> {
             onTap: () {},
             child: ListTile(
               title: Text('Favourites'),
-              leading: Icon(Icons.favorite, color: Colors.green, size: 25),
+              leading: Icon(Icons.favorite, color: Colors.orangeAccent, size: 25),
             ),
           ),
           InkWell(
@@ -134,7 +134,7 @@ class _CustomerDrawerState extends State<CustomerDrawer> {
             child: ListTile(
               title: Text('Order history'),
               leading:
-              Icon(Icons.auto_stories, color: Colors.green, size: 25),
+              Icon(Icons.auto_stories, color: Colors.orangeAccent, size: 25),
             ),
           ),
           InkWell(
@@ -142,6 +142,69 @@ class _CustomerDrawerState extends State<CustomerDrawer> {
             child: ListTile(
               title: Text('Retailers around me'),
               leading: Icon(Icons.emoji_people_outlined,
+                  color: Colors.orangeAccent, size: 25),
+            ),
+          ),
+          Divider(),
+          InkWell(
+            onTap: () {},
+            child: ListTile(
+              title: Text('Feedback & Queries'),
+              leading: Icon(Icons.help, color: Colors.blueAccent, size: 25),
+            ),
+          ),
+          InkWell(
+            onTap: () {},
+            child: ListTile(
+              title: Text('Logout'),
+              leading: Icon(Icons.login_outlined,
+                  color: Colors.blueAccent, size: 25),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class WholesalerDrawer extends StatefulWidget {
+  @override
+  _WholesalerDrawerState createState() => _WholesalerDrawerState();
+}
+
+class _WholesalerDrawerState extends State<WholesalerDrawer> {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: new ListView(
+        children: <Widget>[
+          //header
+          new UserAccountsDrawerHeader(
+            accountName: Text('Kashish'),
+            accountEmail: Text('kashish@mail.comm'),
+            currentAccountPicture: new GestureDetector(
+              child: new CircleAvatar(
+                child: Icon(Icons.person, color: Colors.white),
+                backgroundColor: Colors.blueAccent,
+              ),
+            ),
+            decoration: new BoxDecoration(
+              color: Colors.orangeAccent,
+            ),
+          ),
+          //body
+          InkWell(
+            onTap: () {},
+            child: ListTile(
+              title: Text('My Catalogue'),
+              leading: Icon(Icons.menu_book, color: Colors.green, size: 25),
+            ),
+          ),
+          InkWell(
+            onTap: () {},
+            child: ListTile(
+              title: Text('Customer Statistics'),
+              leading: Icon(Icons.analytics_outlined,
                   color: Colors.green, size: 25),
             ),
           ),

@@ -12,7 +12,7 @@ class _CategoriesState extends State<Categories> {
     return Container(
       decoration: BoxDecoration(
           gradient:
-          LinearGradient(colors: [Colors.green[100], Colors.white])),
+          LinearGradient(colors: [Colors.orangeAccent[100], Colors.white])),
       child: GridView.extent(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,

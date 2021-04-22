@@ -7,7 +7,6 @@ class RetailerHome extends StatefulWidget {
   @override
   _RetailerHomeState createState() => _RetailerHomeState();
 }
-
 class _RetailerHomeState extends State<RetailerHome> {
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Pages/login.dart';
 import 'Pages/dashboard-retailer.dart';
+import 'Pages/dashboard-customer.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -9,7 +10,7 @@ void main() {
       primaryColor: Colors.green,
       scaffoldBackgroundColor: Colors.white,
     ),
-    home: RetailerHome(),
+    home: CustomerHome(),
   ));
 }
 /*
