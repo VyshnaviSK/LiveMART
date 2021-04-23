@@ -22,7 +22,7 @@ class _BodyState extends State<Body> {
   final _formKey = GlobalKey<FormState>();
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  CollectionReference wholesalers = FirebaseFirestore.instance.collection('Wholesalers');
+  CollectionReference users = FirebaseFirestore.instance.collection('Users');
 
 
   TextEditingController emailController = TextEditingController();
@@ -37,9 +37,13 @@ class _BodyState extends State<Body> {
 
     firebaseAuth
         .createUserWithEmailAndPassword(
-        email: emailController.text, password: passwordController.text);
+        email: emailController.text, password: passwordController.text).then((dynamic user){
 
-    wholesalers.add({
+    });
+
+    users.add({
+      "uid": firebaseAuth.currentUser.uid,
+      "role": "Wholesalers",
       "name": nameController.text,
       "shopname": shopnameController.text,
       "email": emailController.text,

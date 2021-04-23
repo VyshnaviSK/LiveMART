@@ -1,18 +1,12 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Product_details/product_screen.dart';
+import 'package:flutter_app/Screens/home.dart';
 import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/size_config.dart';
+import 'package:flutter_app/utils/UserService.dart';
 import 'package:flutter_otp/flutter_otp.dart';
-
-
 import '../../../constants.dart';
-
-FlutterOtp otp = FlutterOtp();
-String result;
-int enteredOtp;
-
 
 
 class OtpForm extends StatefulWidget {
@@ -26,7 +20,11 @@ class OtpForm extends StatefulWidget {
 
 class _OtpFormState extends State<OtpForm> {
 
-  String phoneNumber = '9929710370',otp_str;
+  FlutterOtp otp = FlutterOtp();
+
+  UserService User = new UserService();
+
+  String otp_str;
   var d1,d2,d3,d4, genarated_otp;
   FocusNode pin2FocusNode;
   FocusNode pin3FocusNode;
@@ -61,9 +59,13 @@ class _OtpFormState extends State<OtpForm> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
+
     bool yesorno;
+    String phoneNumber = User.getPhoneNo();
+
     return Form(
       child: Column(
         children: [
@@ -153,7 +155,7 @@ class _OtpFormState extends State<OtpForm> {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return ProductScreen();
+                      return Home();
                     }, // Navigated to login for testing, actual navigation to dashboard
                   ),
                 );

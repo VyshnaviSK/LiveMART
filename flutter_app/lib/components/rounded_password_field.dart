@@ -13,9 +13,11 @@ class RoundedPasswordField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    bool hidetext = true;
     return TextFieldContainer(
       child: TextFormField(
-        obscureText: true,
+        obscureText: hidetext,
         controller: controller,
         onChanged: onChanged,
         cursorColor: kPrimaryColor,
@@ -25,13 +27,20 @@ class RoundedPasswordField extends StatelessWidget {
             Icons.lock,
             color: kPrimaryColor,
           ),
-          suffixIcon: Icon(
-            Icons.visibility,
-            color: kPrimaryColor,
+         /* suffixIcon: GestureDetector(
+            child: Icon(
+              Icons.visibility,
+              color: kPrimaryColor,
+            ),
+            onTap: () {
+              hidetext = false;
+            },
           ),
           border: InputBorder.none,
         ),
+          */
       ),
+    )
     );
   }
 }

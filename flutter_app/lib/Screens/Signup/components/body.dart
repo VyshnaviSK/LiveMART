@@ -22,7 +22,7 @@ class _BodyState extends State<Body> {
   final _formKey = GlobalKey<FormState>();
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  CollectionReference customers = FirebaseFirestore.instance.collection('Customers');
+  CollectionReference users = FirebaseFirestore.instance.collection('Users');
 
 
   TextEditingController emailController = TextEditingController();
@@ -38,7 +38,8 @@ class _BodyState extends State<Body> {
         .createUserWithEmailAndPassword(
         email: emailController.text, password: passwordController.text);
 
-      customers.add({
+      users.add({
+        "role": "Customer",
         "name": nameController.text,
         "email": emailController.text,
         "phone": phoneController.text,
@@ -85,187 +86,189 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Background(
-      key: _formKey,
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "SIGNUP FOR CUSTOMERS",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            SizedBox(height: size.height * 0.03),
-            /*Image.asset(
-              "assets/images/woman.png",
-              height: size.height * 0.35,
-            ),*/
-            /*RoundedInputField(
-              hintText: "Enter Your Email",
-              onChanged: (value) {
+    return SafeArea(
+      child: Background(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "SIGNUP FOR CUSTOMERS",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              SizedBox(height: size.height * 0.03),
+              /*Image.asset(
+                "assets/images/woman.png",
+                height: size.height * 0.35,
+              ),*/
+              /*RoundedInputField(
+                hintText: "Enter Your Email",
+                onChanged: (value) {
 
-              },
-            ),
-            RoundedPasswordField(
-              onChanged: (value) {
-
-              },
-            ),
-            RoundedInputField(
-              hintText: "Enter Your Name",
-              onChanged: (value) {
-
-              },
-            ),
-            RoundedInputField(
-              hintText: "Enter your Phone Number",
-              onChanged: (value) {
-
-              },
-            ),
-            RoundedInputField(
-              hintText: "Enter Your Delivery Address",
-              onChanged: (value) {
-
-              },
-            ),
-            */
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                controller: nameController,
-                decoration: InputDecoration(
-                  labelText: "Enter User Name",
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                // The validator receives the text that the user has entered.
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Enter User Name';
-                  }
-                  return null;
                 },
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                controller: emailController,
-                decoration: InputDecoration(
-                  labelText: "Enter Email",
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                // The validator receives the text that the user has entered.
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Enter Email';
-                  }
-                  return null;
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: "Enter password",
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                // The validator receives the text that the user has entered.
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Enter password';
-                  }
-                  return null;
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                controller: phoneController,
-                decoration: InputDecoration(
-                  labelText: "Enter Phone No.",
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                // The validator receives the text that the user has entered.
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Enter Phone No.';
-                  }
-                  return null;
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                controller: addressController,
-                decoration: InputDecoration(
-                  labelText: "Enter Address",
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                // The validator receives the text that the user has entered.
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Enter Address';
-                  }
-                  return null;
-                },
-              ),
-            ),
-            SizedBox(height: size.height * 0.03),
-            RoundedButton(
-              text: "SIGNUP",
-              press: () {
-                  registerToFb();
-              },
-            ),
-            AlreadyHaveAnAccountCheck(
-              login: false,
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return LoginScreen();
-                    },
-                  ),
-                );
-              },
-            ),
+              RoundedPasswordField(
+                onChanged: (value) {
 
-            /*    OrDivider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SocalIcon(
-                  iconSrc: "assets/icons/facebook.svg",
-                  press: () {},
+                },
+              ),
+              RoundedInputField(
+                hintText: "Enter Your Name",
+                onChanged: (value) {
+
+                },
+              ),
+              RoundedInputField(
+                hintText: "Enter your Phone Number",
+                onChanged: (value) {
+
+                },
+              ),
+              RoundedInputField(
+                hintText: "Enter Your Delivery Address",
+                onChanged: (value) {
+
+                },
+              ),
+              */
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    labelText: "Enter User Name",
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  // The validator receives the text that the user has entered.
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Enter User Name';
+                    }
+                    return null;
+                  },
                 ),
-                SocalIcon(
-                  iconSrc: "assets/icons/twitter.svg",
-                  press: () {},
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    labelText: "Enter Email",
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  // The validator receives the text that the user has entered.
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Enter Email';
+                    }
+                    return null;
+                  },
                 ),
-                SocalIcon(
-                  iconSrc: "assets/icons/google-plus.svg",
-                  press: () {},
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: "Enter password",
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  // The validator receives the text that the user has entered.
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Enter password';
+                    }
+                    return null;
+                  },
                 ),
-              ],
-            )*/
-          ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: phoneController,
+                  decoration: InputDecoration(
+                    labelText: "Enter Phone No.",
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  // The validator receives the text that the user has entered.
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Enter Phone No.';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: addressController,
+                  decoration: InputDecoration(
+                    labelText: "Enter Address",
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  // The validator receives the text that the user has entered.
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Enter Address';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              SizedBox(height: size.height * 0.03),
+              RoundedButton(
+                text: "SIGNUP",
+                press: () {
+                    registerToFb();
+                },
+              ),
+              AlreadyHaveAnAccountCheck(
+                login: false,
+                press: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return LoginScreen();
+                      },
+                    ),
+                  );
+                },
+              ),
+
+              /*    OrDivider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SocalIcon(
+                    iconSrc: "assets/icons/facebook.svg",
+                    press: () {},
+                  ),
+                  SocalIcon(
+                    iconSrc: "assets/icons/twitter.svg",
+                    press: () {},
+                  ),
+                  SocalIcon(
+                    iconSrc: "assets/icons/google-plus.svg",
+                    press: () {},
+                  ),
+                ],
+              )*/
+            ],
+          ),
         ),
       ),
     );
