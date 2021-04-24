@@ -13,7 +13,7 @@
       "availableDate": "20-07-2020"
     },
     "category": {"fruits":
-    [
+    
     {
       "name": "mango",
       "cost": 5,
@@ -37,10 +37,10 @@
       "cost": 10,
       "stock": "true",
       "availableDate": "12-08-2020"
-    }]},
+    }},
     {
     "vegetables":
-    [
+    
     {
       "name": "cauliflower",
       "cost": 25,
@@ -52,9 +52,9 @@
       "cost": 15,
       "stock": "false",
       "availableDate": "26-04-2021"
-    }]},
+    }},
     "cereals":
-    [
+    
     {
       "name": "chickpeas",
       "cost": 40,
@@ -78,7 +78,7 @@
       "cost": 22,
       "stock": "true",
       "availableDate": "25-01-2020"
-    }]
+    }
     }
     ];
 
@@ -108,7 +108,7 @@
       "availableDate": "20-07-2020"
     },
     "category": {"fruits":
-    [
+    
     {
       "name": "mango",
       "cost": 5,
@@ -132,10 +132,10 @@
       "cost": 10,
       "stock": "true",
       "availableDate": "12-08-2020"
-    }]},
+    }},
     {
     "vegetables":
-    [
+    
     {
       "name": "cauliflower",
       "cost": 25,
@@ -147,9 +147,9 @@
       "cost": 15,
       "stock": "false",
       "availableDate": "26-04-2021"
-    }]},
+    }},
     "cereals":
-    [
+    
     {
       "name": "chickpeas",
       "cost": 40,
@@ -173,6 +173,6 @@
       "cost": 22,
       "stock": "true",
       "availableDate": "25-01-2020"
-    }]
+    }
     }
     ];
