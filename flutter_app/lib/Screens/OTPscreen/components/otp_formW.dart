@@ -27,7 +27,7 @@ class OtpFormW extends StatefulWidget {
 
 class _OtpFormWState extends State<OtpFormW> {
 
-  String phoneNumber = '9929710370',otp_str;
+  String phoneNumber = '9648930609',otp_str;
   var d1,d2,d3,d4, genarated_otp;
   FocusNode pin2FocusNode;
   FocusNode pin3FocusNode;

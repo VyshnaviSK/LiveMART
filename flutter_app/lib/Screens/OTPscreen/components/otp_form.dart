@@ -3,14 +3,12 @@ import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Pages/dashboard-customer.dart';
+import 'package:flutter_app/Pages/dashboard-retailer.dart';
 import 'package:flutter_app/Screens/Login/login_screen.dart';
 import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/size_config.dart';
 import 'package:flutter_otp/flutter_otp.dart';
 import 'package:flutter_app/Screens/Front Page/components/body.dart';
-import 'package:flutter_app/pages/dashboard-customer.dart';
-import 'package:flutter_app/pages/dashboard-retailer.dart';
-import 'package:flutter_app/pages/dashboard-wholesaler.dart';
 import '../../../constants.dart';
 
 FlutterOtp otp = FlutterOtp();
@@ -156,7 +154,7 @@ class _OtpFormState extends State<OtpForm> {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return CustomerHome(),
+                      return CustomerHome();
                     }, // Navigated to login for testing, actual navigation to dashboard
                   ),
                 );

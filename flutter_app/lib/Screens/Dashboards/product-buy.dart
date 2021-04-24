@@ -72,7 +72,24 @@ class _ItemListState extends State<ItemList> {
       "availableDate": "12-08-2020"
     },
   ];
-
+  var something=[
+    {
+      "vegetable": {
+        {
+          "name": "strawberry",
+          "cost": 10,
+          "stock": "false",
+          "availableDate": "12-08-2020"
+        },
+        {
+          "name": "kiwi",
+          "cost": 10,
+          "stock": "true",
+          "availableDate": "12-08-2020"
+        },
+      },
+    }
+  ];
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
