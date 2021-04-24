@@ -2,22 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/Models/ItemDetails.dart';
 import 'package:flutter_app/components/text_field_container.dart';
 
+
 class cart extends StatefulWidget {
-
-  String itemname, retailername;
-  int qty , index;
-  double price , cost;
-
-  cart(this.itemname, this.qty, this.price, this.retailername);
-
-  void addToCart(){
-    index = ItemsCart.length +1;
-    ItemsCart[index]["name"] = itemname;
-    ItemsCart[index]["cost"] = price;
-    ItemsCart[index]["quantity"] = qty;
-    ItemsCart[index]["shopname"] = retailername;
-    ItemsCart[index]["price"] =price;
-  }
 
   @override
   _cartState createState() => _cartState();
@@ -26,6 +12,15 @@ class cart extends StatefulWidget {
 
 class _cartState extends State<cart> {
 
+
+  void addToCart(String itemname,int price,int qty, retailername){
+    int ind = ItemsCart.length +1;
+    ItemsCart[ind]["name"] = itemname;
+    ItemsCart[ind]["cost"] = price;
+    ItemsCart[ind]["quantity"] = qty;
+    ItemsCart[ind]["shopname"] = retailername;
+    ItemsCart[ind]["price"] =price;
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -171,16 +166,4 @@ class SingleItem extends StatelessWidget {
         )
     );
   }
-}
-
-
-class addToCart {
-
-  String itemname, retailername;
-  int qty , index;
-  double price , cost;
-
-
-
-
 }

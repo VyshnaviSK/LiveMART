@@ -1,13 +1,13 @@
 
   var RetailerShops = [
     {
-      "name": "saler1",
+      "name": "seller1",
       "cost": 26,
       "distance": "4.5 km",
       "Instock": "true"
     },
     {
-      "name": "saler2",
+      "name": "seller2",
       "cost": 19,
       "stock": "false",
       "availableDate": "20-07-2020"

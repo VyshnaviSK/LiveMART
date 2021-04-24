@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Components/App_Drawer.dart';
+import 'package:flutter_app/Screens/Cart/cart.dart';
 import 'package:flutter_app/Screens/Dashboards/retailer-buy.dart';
 import 'package:flutter_app/Screens/Dashboards/retailer-sell.dart';
 import 'package:flutter_app/utils/authentication.dart';
@@ -31,7 +32,15 @@ class _RetailerHomeState extends State<RetailerHome> {
                       Icons.shopping_cart_rounded,
                       color: Colors.white,
                     ),
-                    onPressed: () {}),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                          builder: (context) {
+                        return cart(itemname, qty, price, retailername);
+                      }, // Navigated to login for testing, actual navigation to dashboard
+                      )
+                    }),
               ],
               bottom: TabBar(
                 tabs: [

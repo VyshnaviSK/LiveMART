@@ -148,8 +148,8 @@ class _OtpFormRState extends State<OtpFormR> {
           RoundedButton(
             text: "Continue",
             press: () {
-              //yesorno = genarated_otp == int.parse(otp_str);
-              //if(yesorno){
+              yesorno = true;//genarated_otp == int.parse(otp_str);
+              if(yesorno){
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -158,6 +158,7 @@ class _OtpFormRState extends State<OtpFormR> {
                     }, // Navigated to login for testing, actual navigation to dashboard
                   ),
                 );
+              }
             },
           ),
           SizedBox(height: SizeConfig.screenHeight * 0.1),
