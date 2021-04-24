@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/Components/App_Drawer.dart';
 import 'package:flutter_app/Screens/Dashboards/retailer-buy.dart';
 import 'package:flutter_app/Screens/Dashboards/retailer-sell.dart';
+import 'package:flutter_app/utils/authentication.dart';
 
 class RetailerHome extends StatefulWidget {
   @override
