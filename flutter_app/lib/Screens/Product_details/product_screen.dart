@@ -8,7 +8,7 @@ import 'package:flutter_app/constants.dart';
 import 'package:flutter_app/size_config.dart';
 
 class ParticularItem extends StatefulWidget {
-  var itemDetails;
+  String itemDetails;
   var index;
   final bool editProduct;
   var inStock;
@@ -145,12 +145,10 @@ class _ParticularItemState extends State<ParticularItem> {
                                   SizedBox(height: 40.0),
                                   Center(
                                     child: RoundedButton(
-                                      text: "Show Shops",
+                                      text: "Add to Cart",
                                       color: kPrimaryColor,
                                       press: (){
-
-                                        Navigator.of(context).push(new MaterialPageRoute(builder: (context)=> cart()));
-
+                                        Navigator.of(context).push(new MaterialPageRoute(builder: (context)=> cart(widget.itemDetails,productQuantity,89,"wholeretailers")));
                                       },
                                     ),
                                   )
@@ -182,16 +180,6 @@ class _ParticularItemState extends State<ParticularItem> {
     });
   }
 
-
-  checkoutProduct(){
-
-      Map<String,dynamic> args = new Map<String, dynamic>();
-      args['price'] = widget.itemDetails['price'];
-      args['productId'] = widget.itemDetails['productId'];
-      args['quantity'] = productQuantity;
-      Navigator.of(context).pushNamed('/checkout/address',arguments: args);
-
-  }
 
 
 

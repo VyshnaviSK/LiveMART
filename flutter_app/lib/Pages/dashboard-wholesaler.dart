@@ -30,12 +30,6 @@ class _WholesalerHomeState extends State<WholesalerHome> {
                 ),
                 onPressed: () {}),
           ],
-          bottom: TabBar(
-            tabs: [
-              Tab(text: 'BUY'),
-              Tab(text: 'SELL'),
-            ],
-          ),
         ),
         body: RetailerSell(),
         drawer: WholesalerDrawer(),

@@ -1,19 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Models/ItemDetails.dart';
+import 'package:flutter_app/components/text_field_container.dart';
 
 class cart extends StatefulWidget {
+
+  String itemname, retailername;
+  int qty , index;
+  double price , cost;
+
+  cart(this.itemname, this.qty, this.price, this.retailername);
+
+  void addToCart(){
+    index = ItemsCart.length +1;
+    ItemsCart[index]["name"] = itemname;
+    ItemsCart[index]["cost"] = price;
+    ItemsCart[index]["quantity"] = qty;
+    ItemsCart[index]["shopname"] = retailername;
+    ItemsCart[index]["price"] =price;
+  }
+
   @override
   _cartState createState() => _cartState();
+
 }
 
 class _cartState extends State<cart> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: new AppBar(
         backgroundColor: Colors.orangeAccent,
-        title: Center(child: Text('LiveMART | CART'))
+        title: Text('LiveMART | CART')
       ),
       body:ItemList(),
     );
@@ -28,16 +47,16 @@ class ItemList extends StatefulWidget {
 
 class _ItemListState extends State<ItemList> {
 
-  int numItems = ItemsCart.length;
 
   @override
   Widget build(BuildContext context) {
+
     return ListView.builder(
-        itemCount: numItems,
+        itemCount: ItemsCart.length,
         itemBuilder: (context,index) {
           return SingleItem(
             itemName: ItemsCart[index]["name"],
-            itemCost: ItemsCart[index]["price"],
+            itemCost: ItemsCart[index]["cost"],
             quantity: ItemsCart[index]["quantity"],
             retailer: ItemsCart[index]["shopname"],
             totalPrice: ItemsCart[index]["price"],
@@ -50,10 +69,13 @@ class _ItemListState extends State<ItemList> {
 class SingleItem extends StatelessWidget {
   final String itemName,retailer;
   final int quantity;
-  final String index;
   final double itemCost,totalPrice;
 
-  const SingleItem({Key key, this.itemName, this.itemCost, this.quantity, this.retailer , this.index, this.totalPrice}) : super(key: key);
+  const SingleItem({Key key,
+    this.itemName,
+    this.itemCost,
+    this.quantity,
+    this.retailer , this.totalPrice}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -104,11 +126,17 @@ class SingleItem extends StatelessWidget {
                                       fontWeight: FontWeight.bold)),
                               TextSpan(
                                   text:
-                                  "\INR $itemCost /kg\n\n",
+                                  "\INR $itemCost /kg\n",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w300)),
+                              TextSpan(
+                                  text: retailer,
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold)),
                               /*TextSpan(
                                   text:inStock=="true"?"In stock \n":"Out of stock \n",
                                   style: TextStyle(
@@ -125,7 +153,18 @@ class SingleItem extends StatelessWidget {
                                */
                             ]))
                       ],
-                    ))
+                    )),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      child: SizedBox(
+                        height: 40,
+                          width: 40,
+                          child: Text(quantity.toString(),style: TextStyle(color: Colors.deepOrange,fontWeight: FontWeight.bold,fontSize: 35),
+                          ),
+                      ),
+                    )
                   ]
               )
           ),
@@ -138,17 +177,10 @@ class SingleItem extends StatelessWidget {
 class addToCart {
 
   String itemname, retailername;
-  int qty;
+  int qty , index;
   double price , cost;
 
-  addToCart(this.itemname, this.cost, this.qty, this.price, this.retailername){
-    int index =ItemsCart.length +1;
-    ItemsCart[index]["name"] = itemname;
-    ItemsCart[index]["cost"] = price*qty;
-    ItemsCart[index]["quantity"] = qty;
-    ItemsCart[index]["price"] = price;
-    ItemsCart[index]["shopname"] = retailername;
 
-  }
+
 
 }
