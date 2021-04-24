@@ -1,4 +1,3 @@
-class Shop{
 
   var RetailerShops = [
     {
@@ -36,6 +35,24 @@ class Shop{
       "cost": 10,
       "stock": "true",
       "availableDate": "12-08-2020"
+    },
+    {
+      "name": "cauliflower",
+      "cost": 25,
+      "stock": "true",
+      "availableDate": "16-09-2020"
+    },
+    {
+      "name": "cucumber",
+      "cost": 15,
+      "stock": "false",
+      "availableDate": "26-04-2021"
+    },
+    {
+      "name": "chickpeas",
+      "cost": 40,
+      "stock": "true",
+      "availableDate": "22-06-2020"
     },
   ];
 
@@ -76,6 +93,22 @@ class Shop{
       "stock": "true",
       "availableDate": "12-08-2020"
     },
+    {
+      "name": "cauliflower",
+      "cost": 25,
+      "stock": "true",
+      "availableDate": "16-09-2020"
+    },
+    {
+      "name": "cucumber",
+      "cost": 15,
+      "stock": "false",
+      "availableDate": "26-04-2021"
+    },
+    {
+      "name": "chickpeas",
+      "cost": 40,
+      "stock": "true",
+      "availableDate": "22-06-2020"
+    },
   ];
-
-}
