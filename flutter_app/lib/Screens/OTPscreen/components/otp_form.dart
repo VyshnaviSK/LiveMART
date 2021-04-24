@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Pages/dashboard-customer.dart';
+import 'package:flutter_app/Pages/dashboard-retailer.dart';
 import 'package:flutter_app/Screens/Login/login_screen.dart';
 import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/size_config.dart';

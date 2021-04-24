@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_app/Screens/Front Page/user_info_screen.dart';
 import 'package:flutter_app/main.dart';
 import 'package:flutter_app/utils/adding_users_google_signin.dart';
+import 'package:flutter_app/Pages/dashboard-retailer.dart';
 
 class Authentication {
   static SnackBar customSnackBar({@required String content}) {
@@ -28,9 +29,10 @@ class Authentication {
     if (user != null) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => UserInfoScreen(
+          /*builder: (context) => UserInfoScreen(
             user: user,
-          ),
+          ),*/
+          builder: (context) => RetailerHome(),
         ),
       );
     }
