@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Screens/Login/loginR.dart';
 import 'package:flutter_app/Screens/Login/login_screen.dart';
 import 'package:flutter_app/Screens/Signup/signup_retailerscreen.dart';
 import 'package:flutter_app/Screens/Welcome/components/background.dart';
@@ -35,7 +36,7 @@ class Body_retailer extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return LoginScreen();
+                      return LoginScreenR();
                     },
                   ),
                 );

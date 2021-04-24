@@ -1,81 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Models/ItemDetails.dart';
-import 'package:flutter_app/Screens/Product_details/product_screen.dart';
 
-class DisplayCategory extends StatefulWidget {
+class cart extends StatefulWidget {
   @override
-  _DisplayCategoryState createState() => _DisplayCategoryState();
+  _cartState createState() => _cartState();
 }
 
-class _DisplayCategoryState extends State<DisplayCategory> {
+class _cartState extends State<cart> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
         backgroundColor: Colors.orangeAccent,
-        title: Text('LiveMART'),
-        actions: <Widget>[
-          new IconButton(
-              icon: Icon(
-                Icons.shopping_cart_rounded,
-                color: Colors.white,
-              ),
-              onPressed: () {}),
-        ],
+        title: Center(child: Text('LiveMART | CART'))
       ),
-      body: ItemList(),
+      body:ItemList(),
     );
   }
 }
 
 class ItemList extends StatefulWidget {
+
   @override
   _ItemListState createState() => _ItemListState();
 }
 
 class _ItemListState extends State<ItemList> {
 
+  int numItems = ItemsCart.length;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: ItemsPresent.length,
-        itemBuilder: (context, index) {
+        itemCount: numItems,
+        itemBuilder: (context,index) {
           return SingleItem(
-            itemName: ItemsPresent[index]["name"],
-            itemCost: ItemsPresent[index]["cost"],
-            inStock: ItemsPresent[index]["stock"],
-            availableDate: ItemsPresent[index]["availableDate"],
+            itemName: ItemsCart[index]["name"],
+            itemCost: ItemsCart[index]["price"],
+            quantity: ItemsCart[index]["quantity"],
+            retailer: ItemsCart[index]["shopname"],
+            totalPrice: ItemsCart[index]["price"],
 
           );
         });
   }
 }
 
-
 class SingleItem extends StatelessWidget {
-  final String itemName;
-  final int itemCost;
-  final String inStock;
-  final String availableDate;
+  final String itemName,retailer;
+  final int quantity;
   final String index;
+  final double itemCost,totalPrice;
 
-  const SingleItem({Key key, this.itemName, this.itemCost, this.inStock, this.availableDate , this.index}) : super(key: key);
+  const SingleItem({Key key, this.itemName, this.itemCost, this.quantity, this.retailer , this.index, this.totalPrice}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.all(10),
-        child: InkWell(
-          onTap: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return ParticularItem(itemDetails: itemName ,editProduct: true,index: index,inStock: inStock,);
-                },
-              ),
-            );
-          },
+        child: Card(
           child: Container(
               height: 120,
               decoration: BoxDecoration(
@@ -126,7 +109,7 @@ class SingleItem extends StatelessWidget {
                                       color: Colors.black,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w300)),
-                              TextSpan(
+                              /*TextSpan(
                                   text:inStock=="true"?"In stock \n":"Out of stock \n",
                                   style: TextStyle(
                                       color: inStock=="true"?Colors.green:Colors.red,
@@ -138,6 +121,8 @@ class SingleItem extends StatelessWidget {
                                       color: inStock=="true"?Colors.green:Colors.red,
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold)),
+
+                               */
                             ]))
                       ],
                     ))
@@ -150,4 +135,20 @@ class SingleItem extends StatelessWidget {
 }
 
 
+class addToCart {
 
+  String itemname, retailername;
+  int qty;
+  double price , cost;
+
+  addToCart(this.itemname, this.cost, this.qty, this.price, this.retailername){
+    int index =ItemsCart.length +1;
+    ItemsCart[index]["name"] = itemname;
+    ItemsCart[index]["cost"] = price*qty;
+    ItemsCart[index]["quantity"] = qty;
+    ItemsCart[index]["price"] = price;
+    ItemsCart[index]["shopname"] = retailername;
+
+  }
+
+}

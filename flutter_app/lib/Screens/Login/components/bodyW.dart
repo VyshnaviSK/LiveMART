@@ -4,9 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Login/components/background.dart';
+import 'package:flutter_app/Screens/OTPscreen/OTPscreenW.dart';
 import 'package:flutter_app/Screens/Signup/signup_screen.dart';
 import 'package:flutter_app/Screens/OTPscreen/OTPscreen.dart';
-import 'package:flutter_app/Screens/home.dart';
 import 'package:flutter_app/components/already_have_an_account_acheck.dart';
 import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/components/rounded_input_field.dart';
@@ -41,7 +41,7 @@ class _BodyWState extends State<BodyW> {
         email: emailController.text, password: passwordController.text).then((res) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => OtpScreen()),
+        MaterialPageRoute(builder: (context) => OtpScreenW()),
       );
     }).catchError((err) {
       showDialog(

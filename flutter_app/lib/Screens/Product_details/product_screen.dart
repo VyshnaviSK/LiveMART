@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Models/ItemDetails.dart';
+import 'package:flutter_app/Screens/Cart/cart.dart';
 import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/constants.dart';
 
@@ -28,7 +29,7 @@ class _ParticularItemState extends State<ParticularItem> {
     return Scaffold(
       appBar: new AppBar(
         backgroundColor: Colors.orangeAccent,
-        title: Text(widget.itemDetails),
+        title: Center(child: Text(widget.itemDetails)),
         actions: <Widget>[
           new IconButton(
               icon: Icon(
@@ -147,6 +148,8 @@ class _ParticularItemState extends State<ParticularItem> {
                                       text: "Show Shops",
                                       color: kPrimaryColor,
                                       press: (){
+
+                                        Navigator.of(context).push(new MaterialPageRoute(builder: (context)=> cart()));
 
                                       },
                                     ),
