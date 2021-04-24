@@ -8,7 +8,7 @@ import 'package:flutter_app/Screens/Login/login_screen.dart';
 import 'package:flutter_app/Screens/Signup/components/background.dart';
 import 'package:flutter_app/Screens/Signup/components/or_divider.dart';
 import 'package:flutter_app/Screens/Signup/components/social_icon.dart';
-import 'package:flutter_app/Screens/home.dart';
+
 import 'package:flutter_app/components/already_have_an_account_acheck.dart';
 import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/components/rounded_input_field.dart';

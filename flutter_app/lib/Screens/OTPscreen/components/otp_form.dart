@@ -1,19 +1,21 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Pages/dashboard-customer.dart';
 import 'package:flutter_app/Screens/Login/login_screen.dart';
 import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/size_config.dart';
 import 'package:flutter_otp/flutter_otp.dart';
-
-
+import 'package:flutter_app/Screens/Front Page/components/body.dart';
+import 'package:flutter_app/pages/dashboard-customer.dart';
+import 'package:flutter_app/pages/dashboard-retailer.dart';
+import 'package:flutter_app/pages/dashboard-wholesaler.dart';
 import '../../../constants.dart';
 
 FlutterOtp otp = FlutterOtp();
 String result;
 int enteredOtp;
-
 
 
 class OtpForm extends StatefulWidget {
@@ -26,8 +28,8 @@ class OtpForm extends StatefulWidget {
 }
 
 class _OtpFormState extends State<OtpForm> {
-
-  String phoneNumber = '9929710370',otp_str;
+  final User user = FirebaseAuth.instance.currentUser;
+  String phoneNumber = '9648930609',otp_str;
   var d1,d2,d3,d4, genarated_otp;
   FocusNode pin2FocusNode;
   FocusNode pin3FocusNode;
@@ -154,7 +156,7 @@ class _OtpFormState extends State<OtpForm> {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return CustomerHome();
+                      return CustomerHome(),
                     }, // Navigated to login for testing, actual navigation to dashboard
                   ),
                 );
@@ -165,7 +167,7 @@ class _OtpFormState extends State<OtpForm> {
           GestureDetector(
             onTap: () {
               genarated_otp = generateOtp();
-              otp.sendOtp(phoneNumber,'the otp is: ' + genarated_otp.toString(),1000,9999,'+91'); // OTP code resend
+              otp.sendOtp(phoneNumber,'the otp for is: ' + genarated_otp.toString(),1000,9999,'+91'); // OTP code resend
             },
             child: Text(
               "Resend OTP Code",
