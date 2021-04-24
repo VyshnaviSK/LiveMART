@@ -7,6 +7,43 @@ import 'package:flutter_app/Screens/Front Page/user_info_screen.dart';
 import 'package:flutter_app/utils/authentication.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+/*Position _currentPosition;
+String _currentAddress;
+
+Future<void> _getCurrentPosition() async {
+  // verify permissions
+  LocationPermission permission = await Geolocator.requestPermission();
+  if (permission == LocationPermission.denied ||
+      permission == LocationPermission.deniedForever) {
+    await Geolocator.openAppSettings();
+    await Geolocator.openLocationSettings();
+  }
+  // get current position
+  _currentPosition = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high);
+
+  // get address
+  String _currentAddress = await _getGeolocationAddress(_currentPosition);
+  return _currentAddress;
+}
+
+// Method to get Address from position:
+
+Future<String> _getGeolocationAddress(Position position) async {
+  // geocoding
+  var places = await placemarkFromCoordinates(
+    position.latitude,
+    position.longitude,
+  );
+  if (places != null && places.isNotEmpty) {
+    final Placemark place = places.first;
+    return "${place.thoroughfare}, ${place.locality}";
+  }
+
+  return "No address available";
+}
+
+Future <String> address = _getCurrentPosition();*/
 
 class Database {
   /// The main Firestore user collection
