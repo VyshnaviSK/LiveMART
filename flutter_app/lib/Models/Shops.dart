@@ -1,4 +1,3 @@
-class Shop{
 
   var RetailerShops = [
     {
@@ -77,5 +76,3 @@ class Shop{
       "availableDate": "12-08-2020"
     },
   ];
-
-}

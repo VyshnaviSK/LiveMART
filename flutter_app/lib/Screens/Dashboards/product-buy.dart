@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Models/ItemDetails.dart';
 import 'package:flutter_app/Screens/Product_details/component/body.dart';
 import 'package:flutter_app/Screens/Product_details/product_screen.dart';
 
@@ -34,44 +35,7 @@ class ItemList extends StatefulWidget {
 }
 
 class _ItemListState extends State<ItemList> {
-  var ItemsPresent = [
-    {
-      "name": "apple",
-      "cost": 26,
-      "stock": "true",
-      "availableDate": ""
-    },
-    {
-      "name": "banana",
-      "cost": 19,
-      "stock": "false",
-      "availableDate": "20-07-2020"
-    },
-    {
-      "name": "mango",
-      "cost": 5,
-      "stock": "true",
-      "availableDate": ""
-    },
-    {
-      "name": "orange",
-      "cost": 15,
-      "stock": "true",
-      "availableDate": ""
-    },
-    {
-      "name": "strawberry",
-      "cost": 10,
-      "stock": "false",
-      "availableDate": "12-08-2020"
-    },
-    {
-      "name": "kiwi",
-      "cost": 10,
-      "stock": "true",
-      "availableDate": "12-08-2020"
-    },
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +47,7 @@ class _ItemListState extends State<ItemList> {
             itemCost: ItemsPresent[index]["cost"],
             inStock: ItemsPresent[index]["stock"],
             availableDate: ItemsPresent[index]["availableDate"],
+
           );
         });
   }
@@ -94,8 +59,9 @@ class SingleItem extends StatelessWidget {
   final int itemCost;
   final String inStock;
   final String availableDate;
+  final String index;
 
-  const SingleItem({Key key, this.itemName, this.itemCost, this.inStock, this.availableDate}) : super(key: key);
+  const SingleItem({Key key, this.itemName, this.itemCost, this.inStock, this.availableDate , this.index}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -106,8 +72,8 @@ class SingleItem extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return ParticularItem();
-                }, // Navigated to login for testing, actual navigation to dashboard
+                  return ParticularItem(itemDetails: itemName ,editProduct: true,index: index,inStock: inStock,);
+                },
               ),
             );
           },

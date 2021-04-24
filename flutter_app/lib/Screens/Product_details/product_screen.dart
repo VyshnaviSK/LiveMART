@@ -1,152 +1,70 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Models/ItemDetails.dart';
+import 'package:flutter_app/components/rounded_button.dart';
+import 'package:flutter_app/constants.dart';
 
 import 'package:flutter_app/size_config.dart';
 
 class ParticularItem extends StatefulWidget {
-  final Map <String,dynamic> itemDetails;
+  var itemDetails;
+  var index;
   final bool editProduct;
+  var inStock;
 
-  ParticularItem({var key, this.itemDetails, this.editProduct}):super(key: key);
+  ParticularItem({var key, this.itemDetails, this.editProduct , this.index , this.inStock}):super(key: key);
 
   @override
   _ParticularItemState createState() => _ParticularItemState();
 }
 
 class _ParticularItemState extends State<ParticularItem> {
-  final GlobalKey<ScaffoldState> _productScaffoldKey = new GlobalKey<ScaffoldState>();
-  final GlobalKey<State> keyLoader = new GlobalKey<State>();
 
-  Map customDimension = new Map();
-  List <Map<Color,bool>> productColors;
-  List<Map<String,bool>> productSizes;
   int productQuantity = 1;
-
-  setItemDetails(item){
-    print('set item details');
-    Map<String,dynamic> args = widget.itemDetails;
-    setState(() {
-      if(widget.editProduct){
-        productQuantity = widget.itemDetails['quantity'];
-      }
-    });
-  }
-
-  setProductQuantity(String type){
-    setState(() {
-      if(type == 'inc'){
-        if(productQuantity != 5){
-          productQuantity = productQuantity + 1;
-        }
-      }
-      else{
-        if(productQuantity != 1){
-          productQuantity = productQuantity - 1;
-        }
-      }
-    });
-  }
-
-
-  void setCustomWidth(String screenSize){
-    if(screenSize == 'smallMobile'){
-      customDimension['productImageHeight'] = SizeConfig.screenHeight / 2.4;
-      customDimension['sizeBoxHeight'] = SizeConfig.safeBlockVertical * 7.5;
-    }
-    else if(screenSize == 'largeMobile'){
-      customDimension['productImageHeight'] = SizeConfig.screenHeight / 2.2;
-      customDimension['sizeBoxHeight'] = SizeConfig.safeBlockVertical * 6.5;
-    }
-    else if(screenSize == 'tablet'){
-      customDimension['productImageHeight'] = SizeConfig.screenHeight / 2.3;
-      customDimension['sizeBoxHeight'] = SizeConfig.safeBlockVertical * 6.5;
-    }
-  }
-
-  void showInSnackBar(String msg, Color color) {
-    _productScaffoldKey.currentState.showSnackBar(
-      SnackBar(
-        backgroundColor: color,
-        content: new Text(msg),
-        action: SnackBarAction(
-          label:'Close',
-          textColor: Colors.white,
-          onPressed: (){
-            _productScaffoldKey.currentState.removeCurrentSnackBar();
-          },
-        ),
-      ),
-    );
-  }
-
-
-  checkoutProduct(){
-    String selectedSize;
-    String selectedColor;
-    if(selectedSize == '' && productSizes.length != 0) showInSnackBar('Select size',Colors.red);
-    else if(selectedColor == '' && productColors.length != 0) showInSnackBar('Select color', Colors.red);
-    else{
-      Map<String,dynamic> args = new Map<String, dynamic>();
-      args['price'] = widget.itemDetails['price'];
-      args['productId'] = widget.itemDetails['productId'];
-      args['quantity'] = productQuantity;
-      args['size'] = selectedSize;
-      args['color'] = selectedColor;
-      Navigator.of(context).pushNamed('/checkout/address',arguments: args);
-    }
-  }
-
-
-  @override
-  void initState() {
-    super.initState();
-    setItemDetails(widget.itemDetails);
-  }
 
   @override
   Widget build(BuildContext buildContext) {
     SizeConfig().init(buildContext);
-
     return Scaffold(
-      key: _productScaffoldKey,
-      //appBar: header('Product Details', _productScaffoldKey, true, context),
+      appBar: new AppBar(
+        backgroundColor: Colors.orangeAccent,
+        title: Text(widget.itemDetails),
+        actions: <Widget>[
+          new IconButton(
+              icon: Icon(
+                Icons.shopping_cart_rounded,
+                color: Colors.white,
+              ),
+              onPressed: () {
+
+              }),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              stops: [0.25,0.2],
-              colors: [Color(0xff4CEEFB), Colors.white],
-            ),
-          ),
           child: Padding(
-            padding: EdgeInsets.fromLTRB(
-                SizeConfig.safeBlockHorizontal * 6.7,
-                SizeConfig.topPadding,
-                SizeConfig.safeBlockHorizontal * 6.7,
-                SizeConfig.topPadding
-            ),
+            padding: const EdgeInsets.all(20.0),
             child: SizedBox(
-              height: SizeConfig.screenHeight,
-              width: SizeConfig.screenWidth,
+              height: 700,
+              width: 500,
               child: Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(35)
                 ),
-                color: Colors.red,
+                color: Colors.white,
                 elevation: 10.0,
                 margin: EdgeInsets.zero,
                 clipBehavior: Clip.antiAlias,
                 child: Column(
                   children: [
-                    Container(
-                      height: customDimension['productImageHeight'],
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage(widget.itemDetails['image']),
-                              fit: BoxFit.fill
-                          )
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                            child: Image.asset("Images/fruits/"+widget.itemDetails+".jpeg",
+                              height: 300,
+                              width: 300,
+                              fit: BoxFit.fill,
+                            ),
                       ),
                     ),
                     Expanded(
@@ -154,68 +72,30 @@ class _ParticularItemState extends State<ParticularItem> {
                             width: SizeConfig.screenWidth,
                             padding: EdgeInsets.symmetric(
                                 vertical: 10.0,
-                                horizontal: SizeConfig.safeBlockHorizontal * 5
+                                horizontal: 10.0
                             ),
                             margin: EdgeInsets.zero,
                             decoration: BoxDecoration(
-                              color: Color(0xff4CCEFB),
+                              color: Colors.lightGreenAccent[100],
                             ),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Flexible(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'T-Shirt',
-                                          style: TextStyle(
-                                              fontFamily: 'NovaSquare',
-                                              fontSize: SizeConfig.safeBlockHorizontal * 4.5,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold,
-                                              letterSpacing: 1.0
-                                          ),
-                                        ),
-                                        Text(
-                                          "\$${widget.itemDetails['price']}.00",
-                                          style: TextStyle(
-                                              fontSize: SizeConfig.safeBlockHorizontal * 4.8,
-                                              fontFamily: 'NovaSquare',
-                                              color: Colors.white70,
-                                              fontWeight: FontWeight.bold
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  Text(
-                                    widget.itemDetails['name'],
-                                    style: TextStyle(
-                                      fontFamily: 'NovaSquare',
-                                      fontSize: SizeConfig.safeBlockHorizontal * 3.8,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 1.0,
-                                    ),
-                                  ),
-
+                                  SizedBox(height: 35.0),
                                   Center(
                                     child: Padding(
-                                      padding: EdgeInsets.symmetric(vertical: SizeConfig.safeBlockVertical * 1.2),
+                                      padding: const EdgeInsets.all(8.0),
                                       child: Text(
                                         'Quantity',
                                         style: TextStyle(
-                                            fontFamily: 'NovaSquare',
-                                            fontSize: SizeConfig.safeBlockHorizontal * 5,
-                                            letterSpacing: 1.0,
-                                            fontWeight: FontWeight.bold
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ),
                                   ),
+                                  SizedBox(height: 10.0),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: <Widget>[
@@ -226,17 +106,24 @@ class _ParticularItemState extends State<ParticularItem> {
                                         color: Colors.white,
                                         child: Icon(
                                           Icons.add,
-                                          size: SizeConfig.safeBlockHorizontal * 7,
                                         ),
-                                        padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal * 3),
                                         shape: CircleBorder(),
                                         elevation: 18.0,
                                       ),
-                                      Text(
-                                        '$productQuantity',
-                                        style: TextStyle(
-                                            fontSize: SizeConfig.safeBlockHorizontal * 7,
-                                            fontWeight: FontWeight.bold
+                                      Container(
+                                        color: Colors.white,
+                                        child: SizedBox(
+                                          height: 70,
+                                          width: 70,
+                                          child: Center(
+                                            child: Text(
+                                              '$productQuantity',
+                                              style: TextStyle(
+                                                fontSize: 40,
+                                                  fontWeight: FontWeight.bold
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                       ),
                                       MaterialButton(
@@ -247,14 +134,23 @@ class _ParticularItemState extends State<ParticularItem> {
                                         color: Colors.black,
                                         child: Icon(
                                           Icons.remove,
-                                          size: SizeConfig.safeBlockHorizontal * 7,
                                         ),
-                                        padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal * 3),
+                                        padding: const EdgeInsets.all(8.0),
                                         shape: CircleBorder(),
                                         elevation: 18.0,
                                       ),
                                     ],
                                   ),
+                                  SizedBox(height: 40.0),
+                                  Center(
+                                    child: RoundedButton(
+                                      text: "Show Shops",
+                                      color: kPrimaryColor,
+                                      press: (){
+
+                                      },
+                                    ),
+                                  )
                                 ]
                             )
                         )
@@ -268,4 +164,32 @@ class _ParticularItemState extends State<ParticularItem> {
       ),
     );
   }
+
+
+  setProductQuantity(String type){
+    setState(() {
+      if(type == 'inc'){
+          productQuantity = productQuantity + 1;
+      }
+      else{
+        if(productQuantity != 1){
+          productQuantity = productQuantity - 1;
+        }
+      }
+    });
+  }
+
+
+  checkoutProduct(){
+
+      Map<String,dynamic> args = new Map<String, dynamic>();
+      args['price'] = widget.itemDetails['price'];
+      args['productId'] = widget.itemDetails['productId'];
+      args['quantity'] = productQuantity;
+      Navigator.of(context).pushNamed('/checkout/address',arguments: args);
+
+  }
+
+
+
 }

@@ -1,18 +1,15 @@
 import 'dart:collection';
 
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Login/login_screen.dart';
 import 'package:flutter_app/Screens/Signup/components/background.dart';
-import 'package:flutter_app/Screens/Signup/components/or_divider.dart';
-import 'package:flutter_app/Screens/Signup/components/social_icon.dart';
-import 'package:flutter_app/Screens/home.dart';
+
 import 'package:flutter_app/components/already_have_an_account_acheck.dart';
 import 'package:flutter_app/components/rounded_button.dart';
-import 'package:flutter_app/components/rounded_input_field.dart';
-import 'package:flutter_app/components/rounded_password_field.dart';
+
 import 'package:flutter_app/utils/UserAPIs.dart';
 
 class Body extends StatefulWidget {
