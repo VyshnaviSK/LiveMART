@@ -15,7 +15,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_app/Screens/Front Page/user_info_screen.dart';
 import 'package:flutter_app/widgets/google_sign_in_button.dart';
 
+
 class Body extends StatelessWidget {
+
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +54,7 @@ class Body extends StatelessWidget {
             RoundedButton(
               text: "CUSTOMER",
               press: () {
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(
