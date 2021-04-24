@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Components/App_Drawer.dart';
-import 'package:flutter_app/Screen/customer-buy.dart';
+import 'package:flutter_app/Screens/Dashboards/customer-buy.dart';
 
 class CustomerHome extends StatefulWidget {
   @override

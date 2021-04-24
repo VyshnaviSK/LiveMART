@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'UserService.dart';
+import 'UserAPIs.dart';
 
 class ProfileService{
   UserService _userService = new UserService();
@@ -8,10 +8,16 @@ class ProfileService{
   Future<Map> getUserProfile() async{
     Map profileDetails = new Map();
     String uid = await _userService.getUserId();
-    QuerySnapshot profileData = await _firestore.collection('users').where('userId',isEqualTo: uid).get();
+    QuerySnapshot profileData = await _firestore.collection('Users').where('userId',isEqualTo: uid).get();
 
-    profileDetails['fullName'] = profileData.docs[0].data()['fullName'];
-    profileDetails['mobileNumber'] = profileData.docs[0].data()['mobileNumber'];
+    profileDetails['name'] = profileData.docs[0].data()['name'];
+    profileDetails['phone'] = profileData.docs[0].data()['phone'];
+    profileDetails['address'] = profileData.docs[0].data()['address'];
+    profileDetails['role'] = profileData.docs[0].data()['role'];
+    if(profileDetails['role']=='Wholesaler' || profileDetails['role']=='Retailer'){
+      profileDetails['shopname'] = profileData.docs[0].data()['shopname'];
+    }
+
     return profileDetails;
   }
 

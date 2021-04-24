@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Pages/dashboard-customer.dart';
+import 'package:flutter_app/Pages/dashboard-wholesaler.dart';
 import 'package:flutter_app/Screens/Login/login_screen.dart';
 import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/size_config.dart';
@@ -16,16 +16,16 @@ int enteredOtp;
 
 
 
-class OtpForm extends StatefulWidget {
-  const OtpForm({
+class OtpFormW extends StatefulWidget {
+  const OtpFormW({
     Key key,
   }) : super(key: key);
 
   @override
-  _OtpFormState createState() => _OtpFormState();
+  _OtpFormWState createState() => _OtpFormWState();
 }
 
-class _OtpFormState extends State<OtpForm> {
+class _OtpFormWState extends State<OtpFormW> {
 
   String phoneNumber = '9929710370',otp_str;
   var d1,d2,d3,d4, genarated_otp;
@@ -148,17 +148,17 @@ class _OtpFormState extends State<OtpForm> {
           RoundedButton(
             text: "Continue",
             press: () {
-              //yesorno = genarated_otp == int.parse(otp_str);
-              //if(yesorno){
+              yesorno = genarated_otp == int.parse(otp_str);
+              if(yesorno){
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return CustomerHome();
+                      return WholesalerHome();
                     }, // Navigated to login for testing, actual navigation to dashboard
                   ),
                 );
-             // }
+              }
             },
           ),
           SizedBox(height: SizeConfig.screenHeight * 0.1),

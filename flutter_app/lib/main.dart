@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/Screens/Front%20Page/front_page.dart';
 import 'package:flutter_app/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_app/constants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_app/utils/UserAPIs.dart';
 import 'package:flutter_app/utils/authentication.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
+
+
+
 
 class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();

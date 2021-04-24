@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,6 +13,7 @@ import 'package:flutter_app/components/already_have_an_account_acheck.dart';
 import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/components/rounded_input_field.dart';
 import 'package:flutter_app/components/rounded_password_field.dart';
+import 'package:flutter_app/utils/UserAPIs.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -19,11 +22,12 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
 
-  final _formKey = GlobalKey<FormState>();
+  final _signUpFormKey = GlobalKey<FormState>();
+  HashMap userValues = new HashMap<String, String>();
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   CollectionReference users = FirebaseFirestore.instance.collection('Users');
-
+  UserService userService = UserService();
 
   TextEditingController emailController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -31,14 +35,24 @@ class _BodyState extends State<Body> {
   TextEditingController addressController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
-  @override
-  void registerToFb() {
 
-    firebaseAuth
-        .createUserWithEmailAndPassword(
-        email: emailController.text, password: passwordController.text);
+  @override
+  Future<void> registerToFb() async {
+
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      }
+    } catch (e) {
+    }
 
       users.add({
+        "uuid": userID(),
         "role": "Customer",
         "name": nameController.text,
         "email": emailController.text,
@@ -73,6 +87,7 @@ class _BodyState extends State<Body> {
     });
   }
 
+
   @override
   void dispose() {
     super.dispose();
@@ -88,7 +103,7 @@ class _BodyState extends State<Body> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Background(
-        key: _formKey,
+        key: _signUpFormKey,
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -102,36 +117,6 @@ class _BodyState extends State<Body> {
                 "assets/images/woman.png",
                 height: size.height * 0.35,
               ),*/
-              /*RoundedInputField(
-                hintText: "Enter Your Email",
-                onChanged: (value) {
-
-                },
-              ),
-              RoundedPasswordField(
-                onChanged: (value) {
-
-                },
-              ),
-              RoundedInputField(
-                hintText: "Enter Your Name",
-                onChanged: (value) {
-
-                },
-              ),
-              RoundedInputField(
-                hintText: "Enter your Phone Number",
-                onChanged: (value) {
-
-                },
-              ),
-              RoundedInputField(
-                hintText: "Enter Your Delivery Address",
-                onChanged: (value) {
-
-                },
-              ),
-              */
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
@@ -149,6 +134,9 @@ class _BodyState extends State<Body> {
                     }
                     return null;
                   },
+                    onSaved: (String val) {
+                      userValues['name'] = val;
+                    }
                 ),
               ),
               Padding(
@@ -168,7 +156,9 @@ class _BodyState extends State<Body> {
                     }
                     return null;
                   },
-                ),
+                  onSaved: (String val) {
+                    userValues['email'] = val;
+                  }),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -188,6 +178,9 @@ class _BodyState extends State<Body> {
                     }
                     return null;
                   },
+                    onSaved: (String val) {
+                      userValues['password'] = val;
+                    }
                 ),
               ),
               Padding(
@@ -207,6 +200,9 @@ class _BodyState extends State<Body> {
                     }
                     return null;
                   },
+                    onSaved: (String val) {
+                      userValues['phone'] = val;
+                    }
                 ),
               ),
               Padding(
@@ -226,13 +222,16 @@ class _BodyState extends State<Body> {
                     }
                     return null;
                   },
+                    onSaved: (String val) {
+                      userValues['address'] = val;
+                    }
                 ),
               ),
               SizedBox(height: size.height * 0.03),
               RoundedButton(
                 text: "SIGNUP",
                 press: () {
-                    registerToFb();
+                  registerToFb();
                 },
               ),
               AlreadyHaveAnAccountCheck(

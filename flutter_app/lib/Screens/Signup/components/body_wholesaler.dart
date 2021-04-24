@@ -33,17 +33,26 @@ class _BodyState extends State<Body> {
   TextEditingController phoneController = TextEditingController();
 
   @override
-  void registerToFb() {
+  Future<void> registerToFb() async {
 
-    firebaseAuth
-        .createUserWithEmailAndPassword(
-        email: emailController.text, password: passwordController.text).then((dynamic user){
-
-    });
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
 
     users.add({
       "uid": firebaseAuth.currentUser.uid,
-      "role": "Wholesalers",
+      "role": "Wholesaler",
       "name": nameController.text,
       "shopname": shopnameController.text,
       "email": emailController.text,

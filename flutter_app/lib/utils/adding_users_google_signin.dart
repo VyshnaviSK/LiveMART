@@ -6,16 +6,13 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_app/Screens/Front Page/user_info_screen.dart';
 import 'package:flutter_app/utils/authentication.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Database {
   /// The main Firestore user collection
   //final firestoreInstance = FirebaseFirestore.instance;
   final CollectionReference userCollection = FirebaseFirestore.instance
-      .collection('users');
-  final DatabaseReference databaseReference = FirebaseDatabase.instance
-      .reference();
+      .collection('Users');
 
   static void infoset() {
     var firebaseUser = FirebaseAuth.instance.currentUser;

@@ -14,12 +14,12 @@ import 'package:flutter_app/components/rounded_password_field.dart';
 import 'package:flutter_app/utils/UserAPIs.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Body extends StatefulWidget {
+class BodyR extends StatefulWidget {
   @override
-  _BodyState createState() => _BodyState();
+  _BodyRState createState() => _BodyRState();
 }
 
-class _BodyState extends State<Body> {
+class _BodyRState extends State<BodyR> {
 
   final _formKey = GlobalKey<FormState>();
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();

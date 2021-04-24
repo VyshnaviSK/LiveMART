@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Components/App_Drawer.dart';
-import 'package:flutter_app/Screen/retailer-sell.dart';
+import 'package:flutter_app/Screens/Dashboards/retailer-sell.dart';
 
-class RetailerHome extends StatefulWidget {
+class WholesalerHome extends StatefulWidget {
   @override
-  _RetailerHomeState createState() => _RetailerHomeState();
+  _WholesalerHomeState createState() => _WholesalerHomeState();
 }
 
-class _RetailerHomeState extends State<RetailerHome> {
+class _WholesalerHomeState extends State<WholesalerHome> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

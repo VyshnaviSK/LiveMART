@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Screens/Product_details/component/body.dart';
+import 'package:flutter_app/Screens/Product_details/product_screen.dart';
 
 class DisplayCategory extends StatefulWidget {
   @override
@@ -99,7 +101,16 @@ class SingleItem extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(10),
         child: InkWell(
-          onTap: (){},
+          onTap: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return ParticularItem();
+                }, // Navigated to login for testing, actual navigation to dashboard
+              ),
+            );
+          },
           child: Container(
               height: 120,
               decoration: BoxDecoration(

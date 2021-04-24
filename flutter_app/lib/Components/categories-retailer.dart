@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Screen/product-buy.dart';
+import 'package:flutter_app/Screens/Dashboards/product-buy.dart';
 
 class Categories extends StatefulWidget {
   @override

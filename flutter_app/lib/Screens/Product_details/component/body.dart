@@ -1,21 +1,30 @@
-import 'package:flutter/cupertino.dart';
+/*import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:app_frontend/components/header.dart';
+import 'package:app_frontend/components/item/productButton.dart';
+import 'package:app_frontend/components/item/productSize.dart';
+import 'package:app_frontend/components/sidebar.dart';
+import 'package:app_frontend/components/loader.dart';
+import 'package:app_frontend/services/shoppingBagService.dart';
+import 'package:app_frontend/components/item/colorGroupButton.dart';
+import 'package:app_frontend/sizeConfig.dart';
+import 'package:app_frontend/components/modals/internetConnection.dart';
+import 'package:app_frontend/services/userService.dart';
 import 'package:flutter_app/size_config.dart';
 
 class ParticularItem extends StatefulWidget {
-  final Map <String,dynamic> itemDetails;
+  final String name;
   final bool editProduct;
 
-  ParticularItem({var key, this.itemDetails, this.editProduct}):super(key: key);
+  ParticularItem({var key, this.name, this.editProduct}):super(key: key);
 
   @override
   _ParticularItemState createState() => _ParticularItemState();
 }
 
 class _ParticularItemState extends State<ParticularItem> {
-  final GlobalKey<ScaffoldState> _productScaffoldKey = new GlobalKey<ScaffoldState>();
-  final GlobalKey<State> keyLoader = new GlobalKey<State>();
+
 
   Map customDimension = new Map();
   List <Map<Color,bool>> productColors;
@@ -29,6 +38,8 @@ class _ParticularItemState extends State<ParticularItem> {
       if(widget.editProduct){
         productQuantity = widget.itemDetails['quantity'];
       }
+      productColors = setColorList(args['color']);
+      productSizes = setSizeList(args['size']);
     });
   }
 
@@ -63,6 +74,58 @@ class _ParticularItemState extends State<ParticularItem> {
     }
   }
 
+  List setColorList(List colors){
+    List <Map<Color,bool>> colorList = new List();
+    String selectedColor = '0xFF${widget.itemDetails['selectedColor']}';
+    colors.forEach((value){
+      Map<Color,bool> colorMap = new Map();
+      if(widget.editProduct && value == selectedColor){
+        colorMap[Color(int.parse(value))] = true;
+        widget.itemDetails.remove('selectedColor');
+      }
+      else{
+        colorMap[Color(int.parse(value))] = false;
+      }
+      colorList.add(colorMap);
+    });
+    return colorList;
+  }
+
+  void selectProductColor(int index){
+    List tempColorList = setColorList(widget.itemDetails['color']);
+    Color key = tempColorList[index].keys.toList()[0];
+    tempColorList[index][key] = true;
+    setState(() {
+      productColors = tempColorList;
+    });
+  }
+
+  void selectProductSize(int index){
+    List tempSizeList = setSizeList(widget.itemDetails['size']);
+    String key = tempSizeList[index].keys.toList()[0];
+    tempSizeList[index][key] = true;
+    setState(() {
+      productSizes = tempSizeList;
+    });
+  }
+
+  List<Map<String,bool>> setSizeList(List sizes){
+    List<Map<String,bool>> sizeList = new List();
+    String selectedSize = widget.itemDetails['selectedSize'];
+    sizes.forEach((size) {
+      Map<String,bool> sizeMap = new Map();
+      if(widget.editProduct && selectedSize == size){
+        sizeMap[size] = true;
+        widget.itemDetails.remove('selectedSize');
+      }
+      else{
+        sizeMap[size] = false;
+      }
+      sizeList.add(sizeMap);
+    });
+    return sizeList;
+  }
+
   void showInSnackBar(String msg, Color color) {
     _productScaffoldKey.currentState.showSnackBar(
       SnackBar(
@@ -81,11 +144,6 @@ class _ParticularItemState extends State<ParticularItem> {
 
 
   checkoutProduct(){
-    String selectedSize;
-    String selectedColor;
-    if(selectedSize == '' && productSizes.length != 0) showInSnackBar('Select size',Colors.red);
-    else if(selectedColor == '' && productColors.length != 0) showInSnackBar('Select color', Colors.red);
-    else{
       Map<String,dynamic> args = new Map<String, dynamic>();
       args['price'] = widget.itemDetails['price'];
       args['productId'] = widget.itemDetails['productId'];
@@ -93,7 +151,7 @@ class _ParticularItemState extends State<ParticularItem> {
       args['size'] = selectedSize;
       args['color'] = selectedColor;
       Navigator.of(context).pushNamed('/checkout/address',arguments: args);
-    }
+
   }
 
 
@@ -106,10 +164,11 @@ class _ParticularItemState extends State<ParticularItem> {
   @override
   Widget build(BuildContext buildContext) {
     SizeConfig().init(buildContext);
+    setCustomWidth(SizeConfig.screenSize);
 
     return Scaffold(
       key: _productScaffoldKey,
-      //appBar: header('Product Details', _productScaffoldKey, true, context),
+      appBar: header('Product Details', _productScaffoldKey, true, context),
       body: SingleChildScrollView(
         child: Container(
           decoration: BoxDecoration(
@@ -201,7 +260,6 @@ class _ParticularItemState extends State<ParticularItem> {
                                       letterSpacing: 1.0,
                                     ),
                                   ),
-
                                   Center(
                                     child: Padding(
                                       padding: EdgeInsets.symmetric(vertical: SizeConfig.safeBlockVertical * 1.2),
@@ -255,6 +313,8 @@ class _ParticularItemState extends State<ParticularItem> {
                                       ),
                                     ],
                                   ),
+                                  //SizedBox(height: 10.0),
+                                  //ProductButtons(addToShoppingBag, checkoutProduct),
                                 ]
                             )
                         )
@@ -269,3 +329,5 @@ class _ParticularItemState extends State<ParticularItem> {
     );
   }
 }
+
+ */
