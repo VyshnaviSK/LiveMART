@@ -148,7 +148,7 @@ class _ParticularItemState extends State<ParticularItem> {
                                       text: "Add to Cart",
                                       color: kPrimaryColor,
                                       press: (){
-                                        Navigator.of(context).push(new MaterialPageRoute(builder: (context)=> cart(widget.itemDetails,productQuantity,89,"wholeretailers")));
+                                        Navigator.of(context).push(new MaterialPageRoute(builder: (context)=> cart(/*widget.itemDetails,productQuantity,89,"wholeretailers"*/)));
                                       },
                                     ),
                                   )

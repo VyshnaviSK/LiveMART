@@ -37,10 +37,12 @@ class _RetailerHomeState extends State<RetailerHome> {
                           context,
                           MaterialPageRoute(
                           builder: (context) {
-                        return cart(itemname, qty, price, retailername);
-                      }, // Navigated to login for testing, actual navigation to dashboard
+                        return cart();
+                      },
                       )
-                    }),
+                      ) ;
+                    }
+                    ),
               ],
               bottom: TabBar(
                 tabs: [

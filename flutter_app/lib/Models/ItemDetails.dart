@@ -1,6 +1,6 @@
 var ItemsPresent = [
   {
-    "name": "Apple",
+    "name": "apple",
     "cost": 26,
     "stock": "true",
     "availableDate": "",
@@ -8,14 +8,14 @@ var ItemsPresent = [
 
   },
   {
-    "name": "Banana",
+    "name": "banana",
     "cost": 19,
     "stock": "false",
     "availableDate": "20-07-2020",
     "quantity": 0
   },
   {
-    "name": "Mango",
+    "name": "mango",
     "cost": 5,
     "stock": "true",
     "availableDate": "",
@@ -45,5 +45,47 @@ var ItemsPresent = [
 ];
 
 var ItemsCart = [
-
+  {
+    "name": "apple",
+    "cost": 26,
+    "quantity": 0,
+    "shopname": "retail_mart",
+    "price": 23
+  },
+  {
+    "name": "apple",
+    "cost": 26,
+    "quantity": 0,
+    "shopname": "retail_mart",
+    "price": 23
+  },
+  {
+    "name": "apple",
+    "cost": 26,
+    "quantity": 0,
+    "shopname": "retail_mart",
+    "price": 23
+  },
+  {
+    "name": "apple",
+    "cost": 26,
+    "quantity": 0,
+    "shopname": "retail_mart",
+    "price": 23
+  },
+  {
+    "name": "apple",
+    "cost": 26,
+    "quantity": 0,
+    "shopname": "retail_mart",
+    "price": 23
+  },
+  {
+    "name": "apple",
+    "cost": 26,
+    "quantity": 0,
+    "shopname": "retail_mart",
+    "price": 23
+  },
 ];
+
