@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Components/app-widgets.dart';
 import 'package:flutter_app/Components/categories-customer.dart';
+import 'package:flutter_app/Models/ItemDetails.dart';
+import 'package:flutter_app/Screen/product-buy.dart';
 class CustomerBody extends StatefulWidget {
   @override
   _CustomerBodyState createState() => _CustomerBodyState();

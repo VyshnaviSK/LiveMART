@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Models/ItemDetails.dart';
+import 'package:flutter_app/Screens/Payment/shippingaddress.dart';
 import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/components/text_field_container.dart';
 
@@ -48,7 +49,7 @@ class _cartState extends State<cart> {
                           ),
                           child: Text("Checkout",),
                           onPressed: () {
-                            print("qwerty");
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ShippingAddress()));
                           },
                         ),
                     )

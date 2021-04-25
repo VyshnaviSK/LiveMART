@@ -6,6 +6,7 @@ import 'package:flutter_app/components/rounded_button.dart';
 import 'package:flutter_app/constants.dart';
 
 import 'package:flutter_app/size_config.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ParticularItem extends StatefulWidget {
   String itemDetails;
@@ -148,7 +149,11 @@ class _ParticularItemState extends State<ParticularItem> {
                                       text: "Add to Cart",
                                       color: kPrimaryColor,
                                       press: (){
-                                        Navigator.of(context).push(new MaterialPageRoute(builder: (context)=> cart(/*widget.itemDetails,productQuantity,89,"wholeretailers"*/)));
+                                       Fluttertoast.showToast(
+                                         msg: "Added to cart",
+                                         toastLength: Toast.LENGTH_SHORT,
+                                         gravity: ToastGravity.CENTER,
+                                       );
                                       },
                                     ),
                                   )

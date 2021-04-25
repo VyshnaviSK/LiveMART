@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Models/ItemDetails.dart';
 import 'package:flutter_app/Screens/Dashboards/product-buy.dart';
 
 class Categories extends StatefulWidget {
@@ -22,7 +23,7 @@ class _CategoriesState extends State<Categories> {
           mainAxisSpacing: 20,
           maxCrossAxisExtent: 300.0,
           children: <Widget>[
-            SingleCategory(
+            SingleCategoryv(
               imageLocation: "Images/vegetable.png",
               name: "Vegetable",
             ),
@@ -58,7 +59,47 @@ class _CategoriesState extends State<Categories> {
     );
   }
 }
+class SingleCategoryv extends StatelessWidget {
+  final String imageLocation;
+  final String name;
 
+  SingleCategoryv({this.imageLocation, this.name});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey, offset: Offset(0.0, 1.0), blurRadius: 4.0)
+          ]),
+      child: Hero(
+        tag: name,
+        child: InkWell(
+          onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+              builder: (context) => new DisplayCategoryv())),
+          child: ListTile(
+            title: Image.asset(
+              imageLocation,
+              width: 100,
+              height: 200,
+            ),
+            subtitle: Container(
+              alignment: Alignment.topCenter,
+              child: Text(name,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500, color: Colors.black54)),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 class SingleCategory extends StatelessWidget {
   final String imageLocation;
   final String name;
@@ -99,3 +140,4 @@ class SingleCategory extends StatelessWidget {
     );
   }
 }
+

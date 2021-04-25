@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_app/Screens/Front Page/user_info_screen.dart';
 import 'package:flutter_app/main.dart';
 import 'package:flutter_app/utils/adding_users_google_signin.dart';
 import 'package:flutter_app/Pages/dashboard-retailer.dart';
-
 class Authentication {
   static SnackBar customSnackBar({@required String content}) {
     return SnackBar(
@@ -32,7 +32,7 @@ class Authentication {
           /*builder: (context) => UserInfoScreen(
             user: user,
           ),*/
-          builder: (context) => RetailerHome(),
+          builder: (context) => RetailerHome()
         ),
       );
     }

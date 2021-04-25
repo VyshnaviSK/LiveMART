@@ -27,7 +27,7 @@ class _CategoriesState extends State<Categories> {
               imageLocation: "Images/vegetable.png",
               name: "Vegetable",
             ),
-            SingleCategory(
+            SingleCategoryv(
               imageLocation: "Images/fruits1.png",
               name: "Fruits",
             ),
@@ -101,7 +101,47 @@ class SingleCategory extends StatelessWidget {
     );
   }
 }
+class SingleCategoryv extends StatelessWidget {
+  final String imageLocation;
+  final String name;
 
+  SingleCategoryv({this.imageLocation, this.name});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey, offset: Offset(0.0, 1.0), blurRadius: 4.0)
+          ]),
+      child: Hero(
+        tag: name,
+        child: InkWell(
+          onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+              builder: (context) => new DisplayCategoryv())),
+          child: ListTile(
+            title: Image.asset(
+              imageLocation,
+              width: 100,
+              height: 200,
+            ),
+            subtitle: Container(
+              alignment: Alignment.topCenter,
+              child: Text(name,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500, color: Colors.black54)),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 class CategoriesSell extends StatefulWidget {
   @override
   _CategoriesSellState createState() => _CategoriesSellState();
@@ -262,12 +302,10 @@ class SingleCategorySell extends StatelessWidget {
                                           style: TextStyle(fontSize: 20),
                                         ),
                                         onPressed: () {
+                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                            content: Text("Product successfully added"),
+                                          ));
                                           Navigator.of(context).pop();
-                                          Fluttertoast.showToast(
-                                            msg: "Product Added",
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.BOTTOM,
-                                          );
                                         }
                                       )
                                     ]),

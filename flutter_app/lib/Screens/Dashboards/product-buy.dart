@@ -39,13 +39,13 @@ class _ItemListState extends State<ItemList> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: ItemsPresent.length,
+        itemCount: ItemsPresentv.length,
         itemBuilder: (context, index) {
           return SingleItem(
-            itemName: ItemsPresent[index]["name"],
-            itemCost: ItemsPresent[index]["cost"],
-            inStock: ItemsPresent[index]["stock"],
-            availableDate: ItemsPresent[index]["availableDate"],
+            itemName: ItemsPresentv[index]["name"],
+            itemCost: ItemsPresentv[index]["cost"],
+            inStock: ItemsPresentv[index]["stock"],
+            availableDate: ItemsPresentv[index]["availableDate"],
 
           );
         });
@@ -149,5 +149,51 @@ class SingleItem extends StatelessWidget {
   }
 }
 
+class DisplayCategoryv extends StatefulWidget {
+  @override
+  _DisplayCategoryvState createState() => _DisplayCategoryvState();
+}
+
+class _DisplayCategoryvState extends State<DisplayCategoryv> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: new AppBar(
+        backgroundColor: Colors.orangeAccent,
+        title: Text('LiveMART'),
+        actions: <Widget>[
+          new IconButton(
+              icon: Icon(
+                Icons.shopping_cart_rounded,
+                color: Colors.white,
+              ),
+              onPressed: () {}),
+        ],
+      ),
+      body: ItemListv(),
+    );
+  }
+}
+
+class ItemListv extends StatefulWidget {
+  @override
+  _ItemListvState createState() => _ItemListvState();
+}
+
+class _ItemListvState extends State<ItemListv> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemCount: ItemsPresent.length,
+        itemBuilder: (context, index) {
+          return SingleItem(
+            itemName: ItemsPresent[index]["name"],
+            itemCost: ItemsPresent[index]["cost"],
+            inStock: ItemsPresent[index]["stock"],
+            availableDate: ItemsPresent[index]["availableDate"],
+          );
+        });
+  }
+}
 
 
